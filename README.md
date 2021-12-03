@@ -1,3 +1,7 @@
+# need to run `npm run build`
+
+# then make sure express is installed `npm install express --save`
+
 # you can run server.js and then open the website on localhost:5000
 
 # Getting Started with Create React App
