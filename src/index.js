@@ -8,6 +8,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+//this is what is called to render the react element initially.
 ReactDOM.render(
   <React.StrictMode>
     <body>
