@@ -1,4 +1,4 @@
-#you can run server.js and then open the website on localhost:5000
+# you can run server.js and then open the website on localhost:5000
 
 # Getting Started with Create React App
 
