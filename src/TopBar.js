@@ -10,8 +10,10 @@ function TopBar(){
     return (
         /* 
         This returns the tap nav bar
-        It will have a button that is the class of SvgBackground that is the menu button
-        then it will have a Title which is the project enchiridion logo
+        It has a menu button
+        a Title
+        a search bar
+        and a login/signup button
         */
         <div className="TopBar">
             <button className="SvgBackground"></button>
