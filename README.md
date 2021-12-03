@@ -1,3 +1,5 @@
+#you can run server.js and then open the website on localhost:5000
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
