@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './CSS/index.css'
-import HomePage from './HomePage'; './HomePage.js'
-import SignUp from './routes/SignUp';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import HomePage from './HomePage';
+import SignUp from './routes/SignUp';
+import './CSS/index.css'
+
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';

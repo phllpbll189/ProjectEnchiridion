@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import TopBar from './TopBar';
 import './CSS/index.css'
 

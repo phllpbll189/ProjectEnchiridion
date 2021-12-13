@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/datastore": "^3.7.2",
+    "@aws-amplify/ui-react": "^1.2.5",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@fontsource/roboto": "^4.5.1",
@@ -12,6 +13,7 @@
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "aws-amplify": "^4.3.10",
     "express": "^4.17.1",
     "history": "^5.1.0",
     "react": "^17.0.2",
