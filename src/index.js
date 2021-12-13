@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TopBar from './TopBar';
 import './CSS/index.css'
+import HomePage from './HomePage'; './HomePage.js'
+import SignUp from './routes/SignUp';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -10,11 +12,13 @@ import '@fontsource/roboto/700.css';
 
 //this is what is called to render the react element initially.
 ReactDOM.render(
-  <React.StrictMode>
-    <body>
-      <TopBar />
-    </body>
-  </React.StrictMode>,
+  
+  <BrowserRouter>
+    <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="SignUp" element={<SignUp />} />
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

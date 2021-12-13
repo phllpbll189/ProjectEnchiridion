@@ -10,10 +10,10 @@ function ButtonGroup(){
     return(
         <div className="Group">
             <div className="button">
-                <Button variant="contained" className="log">Login</Button>
+                <Button variant="contained" className="log" href="/Login">Login</Button>
             </div>
             <div className="button">
-               <Button variant="outlined" className="sign">Sign up</Button> 
+               <Button variant="outlined" className="sign" href="/SignUp">Sign up</Button> 
             </div>
             
             
