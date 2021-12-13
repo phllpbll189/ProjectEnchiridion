@@ -1,6 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import HomeIcon from "@mui/icons-material/Home";
 import './CSS/TopBar.css'
 import SearchBar from './SearchBar';
 import ButtonGroup from './ButtonGroup'

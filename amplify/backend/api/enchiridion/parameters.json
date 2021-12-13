@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "enchiridion",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authenchiridion67330265",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
