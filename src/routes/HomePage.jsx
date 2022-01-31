@@ -1,6 +1,6 @@
 import React from 'react';
-import TopBar from './TopBar';
-import './CSS/index.css'
+import TopBar from '../components/TopBar';
+import '../CSS/index.css'
 
 function HomePage(){
     return (

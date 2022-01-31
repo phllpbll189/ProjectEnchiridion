@@ -2,15 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import HomePage from './HomePage';
+import HomePage from './routes/HomePage';
 import SignUp from './routes/SignUp';
-import './CSS/index.css'
-
-
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import './CSS/index.css';
 
 //this is what is called to render the react element initially.
 ReactDOM.render(
