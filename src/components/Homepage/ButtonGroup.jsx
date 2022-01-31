@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import HomeIcon from "@mui/icons-material/Home";
-import '../CSS/ButtonGroup.css';
+import '../../CSS/ButtonGroup.css';
 
 function ButtonGroup(){
     
