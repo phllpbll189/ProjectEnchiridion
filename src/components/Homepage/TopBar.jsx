@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../CSS/TopBar.css'
+import '../../CSS/Homepage/TopBar.css'
 import SearchBar from './SearchBar';
 import ButtonGroup from './ButtonGroup'
 
@@ -14,13 +14,22 @@ function TopBar(){
         and a login/signup button
         */
         <div className="TopBar">
-            <button className="SvgBackground"></button>
-            <div className="TopTitle">
-                Project 
-                <span className="table">Enchiridion</span>
+
+            <div className='leftContainer start'>
+                {/*Grouping things in left Container to
+                 allow us to use full power of flex box*/}
+                <button className="SvgBackground"></button>
+                <div className="TopTitle">
+                    Project 
+                    <div>Enchiridion</div>
+                </div>
+
             </div>
-            <SearchBar className="search"/>
-            <ButtonGroup />
+
+            <SearchBar className="search"/> 
+
+            {/*had to put buttonGroup in a div to be able to give it a class name*/}
+            <div className='end'><ButtonGroup/></div>   
         </div>
     );
 }

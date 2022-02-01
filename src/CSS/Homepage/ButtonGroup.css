@@ -1,0 +1,13 @@
+.button{
+    background-color: white;
+    border-radius: 4px;
+}
+
+.log{
+    margin-right: 10px;
+}
+
+.button {
+    white-space: nowrap;
+}
+

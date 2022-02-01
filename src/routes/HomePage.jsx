@@ -1,6 +1,6 @@
 import React from 'react';
 import TopBar from '../components/Homepage/TopBar';
-import '../CSS/index.css'
+import '../CSS/Homepage/HomePage.css'
 
 function HomePage(){
     return (
@@ -13,6 +13,8 @@ function HomePage(){
         */
         <div className="HomePage">
             <TopBar />
+            <div className='MainView'>
+            </div>
         </div>
     );
 }

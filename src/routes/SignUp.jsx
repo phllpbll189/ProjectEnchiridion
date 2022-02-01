@@ -2,7 +2,7 @@ import React from 'react';
 import Amplify, { Auth } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import '../CSS/SignUp.css';
+import '../CSS/Signup/SignUp.css';
 import awsconfig from '../aws-exports';
 
 Amplify.configure(awsconfig);

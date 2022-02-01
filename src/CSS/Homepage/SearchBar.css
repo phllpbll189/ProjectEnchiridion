@@ -1,7 +1,12 @@
-
+.container {
+    display: flex;
+    min-width: 150px;
+    width: 35%;
+    align-items: center;
+}
 
 .Search {
-    height: 41px;
+    height: 30px;
     width: 100%;
     border-radius: 0px 7px 7px 0px;
     padding: 0;
@@ -10,31 +15,23 @@
     border-top: none;
     border-color: #93989c;
     padding-left: 5px;
+    font-size:large;
 
   }
 
-  .Search:focus{
-      outline: none;
-  }
-  
-.container {
-    display: flex;
-    margin-left: 15%;
-    min-width: 200px;
-    width: 30%;
-    padding: 0%;
-}
+    .Search:focus{
+        outline: none;
+    }
 
 .dropdown {
     padding: 0;
     margin: 0;
-    height: 43px;
+    height: 32px;
     width: 55px;
     border-radius: 7px 0px 0px 7px;
     border-color: aliceblue;
     border-right: none;
 
-    box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
 

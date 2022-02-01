@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from './routes/HomePage';
 import SignUp from './routes/SignUp';
-import './CSS/index.css';
+import './CSS/Homepage/HomePage.css';
 
 //this is what is called to render the react element initially.
 ReactDOM.render(

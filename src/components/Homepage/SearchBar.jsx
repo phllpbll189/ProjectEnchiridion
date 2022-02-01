@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../CSS/SearchBar.css';
+import '../../CSS/Homepage/SearchBar.css';
 import {ReactComponent as Arrow} from '../../CSS/IMAGES/Arrow.svg';
 
 function SearchBar(){
