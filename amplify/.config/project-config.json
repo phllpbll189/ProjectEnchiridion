@@ -1,17 +1,17 @@
 {
+  "providers": [
+    "awscloudformation"
+  ],
   "projectName": "enchiridion",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
     "framework": "react",
     "config": {
-      "SourceDir": "src",
-      "DistributionDir": "build",
-      "BuildCommand": "npm.cmd run-script build",
-      "StartCommand": "npm.cmd run-script start"
+      "SourceDir": "/Users/spencerbellucci/Desktop/Proj_Ench/ProjectEnchiridion/src",
+      "DistributionDir": "/Users/spencerbellucci/Desktop/Proj_Ench/ProjectEnchiridion/build",
+      "BuildCommand": "npm run build",
+      "StartCommand": "npm start"
     }
-  },
-  "providers": [
-    "awscloudformation"
-  ]
+  }
 }

@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "enchiridion67330265": {}
+      },
+      "function": {
+        "AdminQueriesdb99357f": {
+          "deploymentBucketName": "amplify-enchiridion-dev-05458-deployment",
+          "s3Key": "amplify-builds/AdminQueriesdb99357f-6439356d333563655079-build.zip"
+        }
       }
     }
   }

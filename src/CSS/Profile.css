@@ -1,0 +1,74 @@
+.profile_card {
+    width: 30%;
+    margin: auto;
+    padding-top: 15%;
+    border: 5px solid green;
+    z-index: auto;
+}
+
+.Profile {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 5px solid green;
+    overflow: visible;
+}
+
+.profile_pic {
+    border-radius: 50%;
+    width: 25%;
+    height: 25%;
+    display: block;
+    margin: auto;
+    position: static;
+    z-index: 1000;
+}
+
+.wall_pic {
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    object-fit: none;
+    margin-top: -1%;
+}
+
+.profile_name {
+    color: white;
+    font-size: 150%;
+    text-align: center;
+}
+
+.occupation_name {
+    color: lightgray;
+    font-size: 100%;
+    margin-top: -1%;
+    text-align: center;
+}
+
+.followers {
+    color: lightgray;
+    font-size: 100%;
+    margin-top: -1%;
+    text-align: center;
+}
+
+.video_bar {
+    padding: 2%;
+}
+
+.home_bar {
+    color: lightgray;
+    padding-right: 3%;
+    font-size: 150%;
+}
+
+.playlist_bar {
+   color: lightgray;
+   padding-right: 3%;
+   font-size: 150%;
+}
+
+.about_bar {
+    color: lightgray;
+    font-size: 150%;
+}

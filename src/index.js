@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import HomePage from './HomePage';
 import SignUp from './routes/SignUp';
+import Profile from './Profile';
 import './CSS/index.css'
 
 
@@ -19,6 +20,7 @@ ReactDOM.render(
     <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="SignUp" element={<SignUp />} />
+        <Route path="Profile" element={<Profile />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
