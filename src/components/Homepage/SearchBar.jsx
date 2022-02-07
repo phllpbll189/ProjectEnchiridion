@@ -8,7 +8,7 @@ function SearchBar(){
         //for a filter
     
         <div className="container">
-             <button className="dropdown">
+             <button className="dropdown-search">
                  <Arrow />
              </button>
              <input type="text" placeholder="Search Guides" className="Search"></input>
