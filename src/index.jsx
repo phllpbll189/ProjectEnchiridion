@@ -8,7 +8,7 @@ import './CSS/Homepage/HomePage.css';
 
 //this is what is called to render the react element initially.
 ReactDOM.render(
-  
+  // #TODO Need to make top bar show up here, there isn't a scenario that doesn't have a nav bar
   <BrowserRouter>
     <Routes>
         <Route path="/" element={<HomePage />} />
