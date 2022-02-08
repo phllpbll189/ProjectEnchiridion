@@ -14,17 +14,13 @@ function Profile(){
         <div className="Profile">
             <TopBar />
             
-            <img class="wall_pic" src="https://reviverestore.org/wp-content/uploads/2017/05/placeholder-image-cropped.jpg" alt="Wallpaper Pic"></img>
-
-
             <div className="profile_card">
+                <img class="wall_pic" src="https://www.uhonline.hawaii.edu/uhoic/wp-content/uploads/2021/08/banner-placeholder.jpg" alt="Wallpaper Pic"></img>
                 <img class="profile_pic" src="https://www.kemhospitalpune.org/wp-content/uploads/2020/12/Profile_avatar_placeholder_large.png" alt="Profile Pic"></img>
                 <h1 className="profile_name">First Last</h1>
                 <h1 className="occupation_name">User Occupation</h1>
                 <h1 className="followers">000 Followers</h1>
             </div>
-
-
 
             <div className="video_bar">
                 <a className="home_bar">Home</a>
