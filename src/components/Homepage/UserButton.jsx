@@ -57,9 +57,10 @@ export default function UserButton(props){
                     userSignOut();
                     navigate('/') 
                 }else{
-                    navigate(props.nav) 
+                    navigate(props.nav || '/')  //default to homepage
                 } 
             }
+            
             return (
                 <a href='#' className='menu-item'
                 onClick={handleClick}>
