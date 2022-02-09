@@ -10,6 +10,17 @@
       "StackName": "amplify-enchiridion-dev-05458",
       "StackId": "arn:aws:cloudformation:us-east-1:236199790110:stack/amplify-enchiridion-dev-05458/0e8cb6f0-5b10-11ec-9396-0a54d2946cc7",
       "AmplifyAppId": "d1d98wvqdk38fp"
-    } 
+    },
+    "categories": {
+      "auth": {
+        "enchiridion67330265": {}
+      },
+      "function": {
+        "AdminQueriesdb99357f": {
+          "deploymentBucketName": "amplify-enchiridion-dev-05458-deployment",
+          "s3Key": "amplify-builds/AdminQueriesdb99357f-6439356d333563655079-build.zip"
+        }
+      }
+    }
   }
 }
