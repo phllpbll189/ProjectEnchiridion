@@ -18,7 +18,7 @@ export default function TopBar(props){
             <div className='leftContainer start'>
                 {/*Grouping things in left container*/}
                 <div className="SvgBackground"></div>
-                <RedirectToHome></RedirectToHome>
+                <RedirectToHome>Logo to homepage</RedirectToHome>
             </div>
             <div className='middle'>
                 {props.children}  
