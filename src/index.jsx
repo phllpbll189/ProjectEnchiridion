@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Editor from './routes/Editor'
-import HomePage from './routes/HomePage';
-import SignUp from './routes/SignUp';
-import './CSS/Homepage/HomePage.css';
+import {HomePage, Editor, SignUp} from './routes';
+
 
 //this is what is called to render the react element initially.
 ReactDOM.render(

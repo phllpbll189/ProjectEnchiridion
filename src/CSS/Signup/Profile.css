@@ -1,0 +1,70 @@
+.Profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    top: 39%;
+}
+
+.wall_pic {
+    display: flex;
+    width: 100%;
+    top: 50%
+}
+
+.profile_pic {
+    border-radius: 50%;
+    width: 8%;
+    margin-top: -3%
+}
+
+.profile_name {
+    color: white;
+    font-size: 150%;
+    text-align: center;
+}
+
+.occupation_name {
+    color: lightgray;
+    font-size: 100%;
+    margin-top: -1%;
+    text-align: center;
+}
+
+.followers {
+    color: lightgray;
+    font-size: 100%;
+    margin-top: -0.5%;
+    text-align: center;
+}
+
+.video_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: flex-start;
+}
+
+.home_bar {
+    color: lightgray;
+    padding-right: 40%;
+    padding-left: 20%;
+    font-size: 150%;
+}
+
+.playlist_bar {
+   color: lightgray;
+   padding-right: 40%;
+   font-size: 150%;
+}
+
+.about_bar {
+    color: lightgray;
+    font-size: 150%;
+}
