@@ -8,7 +8,7 @@
   "javascript": {
     "framework": "react",
     "config": {
-      "SourceDir": "npm.cmd run-script build",
+      "SourceDir": "src",
       "DistributionDir": "npm.cmd run-script start",
       "BuildCommand": "npm run build",
       "StartCommand": "npm start"
