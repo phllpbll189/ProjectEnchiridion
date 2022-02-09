@@ -1,5 +1,9 @@
 import React from 'react';
+import TopBar from '../components/Homepage/TopBar';
 
-class Editor extends React.Component{
+export default function Editor(){
     // TODO make constructor and store props from state that is passed down
+    return(
+        <TopBar/>
+    );
 }
