@@ -1,2 +1,4 @@
 src\models
 /Users/spencerbellucci/Desktop/Proj_Ench/ProjectEnchiridion/src/models
+
+npm.cmd run-script build\models
