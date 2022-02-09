@@ -5,6 +5,7 @@ import '@aws-amplify/ui-react/styles.css';
 import '../CSS/Signup/SignUp.css';
 import awsconfig from '../aws-exports';
 import TopBar from '../components/Homepage/TopBar';
+import Profile from '../components/Signup/Profile'
 
 Amplify.configure(awsconfig);
 //this is what is called to render the react element initially.
@@ -15,26 +16,18 @@ function SignUp(){
     }
 
     return (
-        <>  <TopBar/>
-            <div className='center'>
-                <Authenticator
-                handleChange
-                >
+        <>  
+            <TopBar/>
+            
+                <Authenticator>
                 {({ signOut, user }) => { //anon function
 
                     return (
-                        <div className="App">
-                            <p style={style}>
-                                Profile Under Construction!
-                                <br></br>
-                                welcome
-                            </p>
-                            <button onClick={signOut}>Sign out</button>
-                        </div>
+                        <Profile></Profile>
                     );
                 }}      
                 </Authenticator>  
-            </div>
+    
         </>
     );  
 }

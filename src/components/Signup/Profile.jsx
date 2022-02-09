@@ -1,22 +1,13 @@
 import React from 'react';
-import TopBar from './TopBar';
-import './CSS/Profile.css'
+import '../../CSS/Signup/Profile.css';
 
 function Profile(){
     return (
-        /* 
-        This returns the tap nav bar
-        It has a menu button
-        a Title
-        a search bar
-        and a login/signup button
-        */
         <div className="Profile">
-            <TopBar />
             
             <div className="profile_card">
-                <img class="wall_pic" src="https://www.uhonline.hawaii.edu/uhoic/wp-content/uploads/2021/08/banner-placeholder.jpg" alt="Wallpaper Pic"></img>
-                <img class="profile_pic" src="https://www.kemhospitalpune.org/wp-content/uploads/2020/12/Profile_avatar_placeholder_large.png" alt="Profile Pic"></img>
+                <img className="wall_pic" src="https://www.uhonline.hawaii.edu/uhoic/wp-content/uploads/2021/08/banner-placeholder.jpg" alt="Wallpaper Pic"></img>
+                <img className="profile_pic" src="https://www.kemhospitalpune.org/wp-content/uploads/2020/12/Profile_avatar_placeholder_large.png" alt="Profile Pic"></img>
                 <h1 className="profile_name">First Last</h1>
                 <h1 className="occupation_name">User Occupation</h1>
                 <h1 className="followers">000 Followers</h1>
@@ -42,6 +33,9 @@ function Profile(){
 
         </div>
     );
+
+    //this is not the final version. last three divs (Homepage, playlist, and about) will be the product of a react component
+    //they will then return the div dynamically based on queryies.
 }
 
 export default Profile;
