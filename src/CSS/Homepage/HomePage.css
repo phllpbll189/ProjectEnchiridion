@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    background: #2f2f2f;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.HomePage{
+    display: flexbox;
+    overflow: clip;
+    height: 100vh;
+}
+
+.sideBar{
+    height: 100%;
+    width: 20vh;
+    background: #ffffff;
+    overflow: hidden;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5vh;
+}

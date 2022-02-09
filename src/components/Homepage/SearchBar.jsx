@@ -1,6 +1,6 @@
 import * as React from 'react';
-import './CSS/SearchBar.css';
-import {ReactComponent as Arrow} from './CSS/IMAGES/Arrow.svg';
+import '../../CSS/Homepage/SearchBar.css';
+import {ReactComponent as Arrow} from '../../CSS/IMAGES/Arrow.svg';
 
 function SearchBar(){
     return(
@@ -8,7 +8,7 @@ function SearchBar(){
         //for a filter
     
         <div className="container">
-             <button className="dropdown">
+             <button className="dropdown-search">
                  <Arrow />
              </button>
              <input type="text" placeholder="Search Guides" className="Search"></input>
