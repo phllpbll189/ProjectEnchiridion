@@ -16,9 +16,7 @@ function SignUp(){
     return (
         <div>  
             <TopBar/>
-            <Authenticator>
-                <Profile></Profile>    
-            </Authenticator>  
+
     
         </div>
     );  
@@ -26,3 +24,6 @@ function SignUp(){
 
 export default SignUp;
 
+// <Authenticator>
+// <Profile></Profile>    
+// </Authenticator>  
