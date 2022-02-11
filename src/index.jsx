@@ -5,8 +5,9 @@ import {HomePage, Editor, SignUp} from './routes';
 import { AmplifyProvider } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import Amplify from 'aws-amplify';
-import awsexports from './aws-exports'
-Amplify.configure(awsexports);
+import aws_exports from './aws-exports'
+Amplify.configure(aws_exports);
+
 //this is what is called to render the react element initially.
 ReactDOM.render(
   <AmplifyProvider>
