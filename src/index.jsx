@@ -10,15 +10,14 @@ Amplify.configure(aws_exports);
 
 //this is what is called to render the react element initially.
 ReactDOM.render(
-  <AmplifyProvider>
-      <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="SignUp" element={<SignUp />} />
-            <Route path="Editor" element={<Editor />} />
-        </Routes>
-      </BrowserRouter>
-    </AmplifyProvider>,
+  
+  <BrowserRouter>
+    <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="SignUp" element={<SignUp />} />
+        <Route path="Editor" element={<Editor />} />
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
