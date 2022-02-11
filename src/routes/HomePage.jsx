@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import TopBar from '../components/Homepage/TopBar';
 import '../CSS/Homepage/HomePage.css';
 import SearchBar from '../components/Homepage/SearchBar';

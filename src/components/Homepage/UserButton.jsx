@@ -72,7 +72,7 @@ export default function UserButton(props){
         }
         
         //IF NOT SIGNED IN
-        if(props.success != true){
+        if(!props.success){
             console.log("active")
             return (
                 <div className='dropdown'>
