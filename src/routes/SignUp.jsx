@@ -17,9 +17,7 @@ function SignUp(){
         <div>  
             <TopBar/>
             <Authenticator>
-                {({ signOut, user }) => (
-                    <Profile></Profile>    
-                )}
+                <Profile></Profile>    
             </Authenticator>  
     
         </div>
