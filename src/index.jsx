@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {HomePage, Editor, SignUp} from './routes';
 import '@aws-amplify/ui-react/styles.css';
+import { Authenticator } from '@aws-amplify/ui-react';
 
 import Amplify from 'aws-amplify';
 import aws_exports from './aws-exports'

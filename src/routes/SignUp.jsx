@@ -1,9 +1,12 @@
 import React from 'react';
-import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify, Auth } from 'aws-amplify';
+import TopBar from '../components/Homepage/TopBar';
+import Profile from '../components/Signup/Profile';
+import Authenticator from '../components/Signup/Authenticator';
+
+
 import '@aws-amplify/ui-react/styles.css';
 import '../CSS/Signup/SignUp.css';
-import TopBar from '../components/Homepage/TopBar';
-import Profile from '../components/Signup/Profile'
 
 //this is what is called to render the react element initially.
 function SignUp(){
@@ -14,12 +17,13 @@ function SignUp(){
 
     
     return (
-        <div>  
+        <>  
             <TopBar/>
             <Authenticator>
-                <Profile></Profile>       
-            </Authenticator>  
-        </div>
+                <Profile/>
+            </Authenticator>
+
+        </>
     );  
 } 
 
