@@ -16,14 +16,12 @@ function SignUp(){
     return (
         <div>  
             <TopBar/>
-
-    
+            <Authenticator>
+                <Profile></Profile>       
+            </Authenticator>  
         </div>
     );  
 } 
 
 export default SignUp;
 
-// <Authenticator>
-// <Profile></Profile>    
-// </Authenticator>  

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {HomePage, Editor, SignUp} from './routes';
-import { AmplifyProvider } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+
 import Amplify from 'aws-amplify';
 import aws_exports from './aws-exports'
 Amplify.configure(aws_exports);
