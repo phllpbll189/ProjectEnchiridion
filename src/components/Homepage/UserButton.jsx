@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import '../../CSS/Homepage/UserButton.css';
 import { Auth } from 'aws-amplify';
 import { useNavigate } from "react-router-dom";
-import {logger} from '../Util/util'
 
 
 //AUTHENTICATE CURRENT USER
