@@ -8,10 +8,7 @@
 
     background-image: url(../IMAGES/Profile.png);
     cursor: pointer;
-    background-position: center;
-    background-size: contain;
-
-    
+    background-position: center;   
 }
 
 /*this is to sepearate between userbutton in navbar and userbutton in dropdown*/
