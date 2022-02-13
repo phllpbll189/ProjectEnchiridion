@@ -1,0 +1,28 @@
+body {
+    overflow-y: scroll;
+}
+
+.column_container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.divider {
+    color: white;
+}
+
+.main_divider{
+    margin-top: 5%;
+    width: 66%;
+    height: 120vh;
+    margin-left: 23%;
+}
+
+.editor_left{
+    width:18%;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    color: white;
+}
