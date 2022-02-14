@@ -18,11 +18,3 @@ body {
     height: 120vh;
     margin-left: 23%;
 }
-
-.editor_left{
-    width:18%;
-    position: fixed;
-    height: 100%;
-    left: 0;
-    color: white;
-}

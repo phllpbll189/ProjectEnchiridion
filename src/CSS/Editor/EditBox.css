@@ -1,0 +1,13 @@
+.main_divider{
+    margin-top: 5%;
+    width: 66%;
+    height: 120vh;
+    margin-left: 23%;
+}
+
+div.editor_left div {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+}
