@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import '../../CSS/Homepage/UserButton.css';
 import { Auth } from 'aws-amplify';
 import { useNavigate } from "react-router-dom";
-import {logger} from '../Util/util'
 
 
 //AUTHENTICATE CURRENT USER
@@ -73,17 +72,20 @@ export default function UserButton(props){
         
         //IF NOT SIGNED IN
         if(!props.success){
-            console.log("active")
+            console.log("Not Signed In")
             return (
                 <div className='dropdown'>
                     <DropdownItem
                     nav='/SignUp'
                     leftIcon={<div className='UserButton left'></div>}>sign in</DropdownItem>
+                    <DropdownItem
+                    nav='/Editor'>Edit Guide</DropdownItem>
                 </div>
             ); 
         }
         
         //IF SIGNED IN
+        console.log("Not Signed In")
         return (
             <div className='dropdown'>
                 <DropdownItem
