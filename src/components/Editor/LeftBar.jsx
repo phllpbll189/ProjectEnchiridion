@@ -1,9 +1,6 @@
 import React from 'react';
 import '../../CSS/Editor/LeftBar.css'
 import uuid from 'react-uuid';
-import {Container} from './EditBox';
-import {Header, Text} from '../Util/editorComponents'
-import { autocompleteClasses } from '@mui/material';
 
 const onDragStart = (event, description, style) => {
     console.log('dragstart:', description);

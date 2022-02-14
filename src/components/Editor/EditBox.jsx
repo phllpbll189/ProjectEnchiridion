@@ -1,8 +1,5 @@
-import { container } from 'aws-amplify';
 import React, { Component } from 'react';
-import uuid from 'react-uuid';
-import { flatten } from 'xstate/lib/utils';
-import composite from '../Util/editorComponents'
+
 
 const style = {    
     marginTop: "5%",

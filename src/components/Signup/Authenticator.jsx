@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import { Amplify, Auth } from 'aws-amplify';
 import {userAuth} from '../Homepage/UserButton';
 
 
