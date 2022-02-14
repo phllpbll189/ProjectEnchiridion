@@ -1,0 +1,28 @@
+.editor_left{
+    position: fixed;
+    left: 0;
+    width:200px;
+    height: 100%;
+    
+    background-color: #F9FAFB;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.flexy {
+    border-width: 1px;
+    border: 1px solid #2b2b2b;
+    border-radius: 5%;
+}
+
+.textContainer{
+
+}
+
