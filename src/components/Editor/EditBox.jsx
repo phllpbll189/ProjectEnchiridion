@@ -11,9 +11,9 @@ const style = {
 }
 
 
- const onDragOver = (ev) => {
+const onDragOver = (ev) => {
         ev.preventDefault();
-    }
+}
 
 export default class EditBox extends Component{
     state = {
@@ -27,6 +27,7 @@ export default class EditBox extends Component{
         throw new Error('Method not implemented.');
         //TODO check to see if ID is in Children
         //should return the element if it is in the array
+        //this is how I will tweak specific positions in drag and drop
     }
    
 
