@@ -17,9 +17,9 @@ function Profile(){
             </div>
 
             <div className="video_bar">
-                <a className="home_bar">Home</a>
-                <a className="playlist_bar">Playlist</a>
-                <a className="about_bar">About</a>
+                <a href='#' className="home_bar">Home</a>
+                <a href='#' className="playlist_bar">Playlist</a>
+                <a href='#' className="about_bar">About</a>
             </div>
 
             <div tabindex="0" className="home_page">

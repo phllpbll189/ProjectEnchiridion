@@ -1,9 +1,6 @@
 import React from 'react';
 import '../../CSS/Editor/LeftBar.css'
 import uuid from 'react-uuid';
-import {Container} from './EditBox';
-import {Header, Text} from '../Util/editorComponents'
-import { autocompleteClasses } from '@mui/material';
 
 const onDragStart = (event, description, style) => {
     console.log('dragstart:', description);
@@ -13,7 +10,6 @@ const onDragStart = (event, description, style) => {
 }
 
 export default function LeftBar(){
-
     return(
         <div className='editor_left'>
             <DragTexts/>
@@ -25,7 +21,7 @@ export default function LeftBar(){
             <div></div>
             <div></div>
         </div>
-    )
+    );
 }
 
 
