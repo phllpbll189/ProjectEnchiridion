@@ -6,14 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 //AUTHENTICATE CURRENT USER
 async function userAuth(callback){
-    await Auth.currentAuthenticatedUser({
-                    bypassCache: false //REQUEST LATEST DATA
-                    }).then(user => {
-                            callback(true, user)
-                    }).catch(err => {
-                        callback(false, err)
-                    }); 
-}
+    // await Auth.currentAuthenticatedUser({
+    //                 bypassCache: false //REQUEST LATEST DATA
+    //                 }).then(user => {
+    //                         callback(true, user);
+    //                 }).catch(err => {
+    //                     callback(false, err);
+    //                 }); 
+    await callback(true, "tempUser"); //temporary until we get requests
+};
 
 //ASYNCHRONOUS FUNCTION FOR SIGNING OUT
 
@@ -23,7 +24,8 @@ export default function UserButton(props){
     const [success, setSuccess] = useState(false);
 
     async function userSignOut(){
-        await Auth.signOut().then(setOpen(!open)).then(setSuccess(false));             
+        //await Auth.signOut().then(setOpen(!open)).then(setSuccess(false)); 
+        await setOpen (!open);    //temporary ntil we get requests       
     }
 
     return(
@@ -35,13 +37,10 @@ export default function UserButton(props){
                     }
                 }); 
 
-                setOpen(!open);}
+                setOpen(!open)}
             }></div>
-            
-            {open && <DropdownMenu
-                success={success}
-                
-            />}
+        
+            {open && <DropdownMenu success={success}/>}
         </>
     );
 
@@ -97,9 +96,9 @@ export default function UserButton(props){
                 nav='/Editor'
                 >Make a guide</DropdownItem>
 
-                <DropdownItem
+                {/* <DropdownItem
                 signOut={true}
-                >Sign Out</DropdownItem>
+                >Sign Out</DropdownItem> */}
 
                 <DropdownItem
                 >About Us</DropdownItem>

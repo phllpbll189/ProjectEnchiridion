@@ -10,7 +10,6 @@ const onDragStart = (event, description, style) => {
 }
 
 export default function LeftBar(){
-
     return(
         <div className='editor_left'>
             <DragTexts/>
@@ -22,7 +21,7 @@ export default function LeftBar(){
             <div></div>
             <div></div>
         </div>
-    )
+    );
 }
 
 

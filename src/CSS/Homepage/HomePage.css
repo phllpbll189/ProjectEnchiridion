@@ -2,6 +2,7 @@ body {
     margin: 0;
     background: #2f2f2f;
     font-family: 'Ubuntu Condensed', sans-serif;
+    overflow-x: hidden;
 }
 
 ul {
