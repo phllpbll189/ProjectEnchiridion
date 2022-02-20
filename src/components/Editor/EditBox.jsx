@@ -1,68 +1,79 @@
 import React, { Component } from 'react';
+import uuid from 'react-uuid';
 
-
-const style = {    
+//styling for editor, drop area, and columns
+const editorStyle = {    
     marginTop: "5%",
     width: "800px",
-    height: "120vh",
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "80vh",
+    maxHeight: "contain-content",
     marginLeft: "23%",
     background: "#E7E7E7",
     padding: "10px"
 }
 
-
-const onDragOver = (ev) => {
-        ev.preventDefault();
+const mainAreaStyle = {    
+    width: "800px",
+    height:"100%",
+    minHeight: "100px",
 }
 
+const column = {    
+    width: "800px",
+}
+
+//will be used to determine index
+const onDragOver = (ev) => {
+    ev.preventDefault();
+}
+
+//editor area
 export default class EditBox extends Component{
     state = {
         "Children": [],
         "Style": {
             padding: "10px"
         }
-    }
-
-    checkId(id) {
-        throw new Error('Method not implemented.');
-        //TODO check to see if ID is in Children
-        //should return the element if it is in the array
-        //this is how I will tweak specific positions in drag and drop
-    }
-   
+    }  
 
     onDrop = (ev) => {
         console.log("Drop")
+        //get data
+        let desc = ev.dataTransfer.getData("desc");
+        let id = ev.dataTransfer.getData("id");
 
-        let desc = ev.dataTransfer.getData("desc")
-        if(desc === "container" ){
-            //if its a container thats dragged then allow it to be dropped in main.
-
-            let id = ev.dataTransfer.getData("id")
-            this.setState({
-                "Children": [
-                    ...this.state.Children,
-                    {
-                        "Type": "container",
-                        "content": [],
-                        "id": id
-                    }
-                ]
-            })
-        }
-      
+        //append new child
+        this.setState({
+            "Children": [
+                ...this.state.Children,
+                {
+                    "Type": "container",
+                    "desc": desc,
+                    "id": id
+                }
+            ]
+        }); 
     }
 
     render (){
         var arr = [];
-        this.state.Children.forEach(container => {
-            arr.push(<Container key={container.id}></Container>)
-            }
-        )
 
-        return (//return guide and all of its child divs
-            <div style={style} onDragOver={(event) => event.preventDefault()} onDrop={(e) => this.onDrop(e)}>
-            {arr}
+        //generate html and place in array
+        this.state.Children.forEach(container => {
+            arr.push(<Container key={container.id} 
+                desc={container.desc}
+                onDragOver={onDragOver}></Container>)
+        });
+
+        //return a div with array
+        return (
+            <div style={editorStyle}>
+                <div style={column}>
+                    {arr}
+                </div>
+                <div style={mainAreaStyle}onDragOver={(event) => event.preventDefault()} onDrop={(e) => this.onDrop(e)}></div>
             </div>
         );
     }
@@ -70,69 +81,75 @@ export default class EditBox extends Component{
 
 
 
+//displays things horizontally
 class Container extends Component{
     state = {
         "Children": [],
-        "verticle": false,
         "Style": {
             display:"flex",
             background:"#ADD8E6",
             width: "100%",
             height: "100px",
             marginTop: "10px"
-        }
+        },
     }
 
-    onDrop = (ev) => {
-        let id = ev.dataTransfer.getData("id");
-        let desc = ev.dataTransfer.getData("desc");
-        let style = ev.dataTransfer.getData("Style");
+    //helps us make child elements
+    generate = (desc) => {
+        console.log(desc)
+        if(!desc) return [...this.state.Children];
+        return (
+            [
+                ...this.state.Children,
+                {
+                    "id": uuid(),
+                    "desc": desc,
+                    "style": {}
+                }  
+            ]
+        ); 
+    }
 
+    //get data from dropped component
+    onDrop = (ev) => {
+        let desc = ev.dataTransfer.getData("desc");
         if(desc === "container"){
             return;
         }
 
+        //append new element
+        let arr = this.generate(desc);
         this.setState({
-            "Children": [
-                ...this.state.Children,
-                {
-                    "Type": desc,
-                    "content": desc,
-                    "id": id,
-                    "style": {
-                        
-                    }
-                }
-            ]
-        })
-        
+            "Children": arr
+        });   
     }
-
 
     render() {
         var arr = [];
-        this.state.Children.forEach(item => {
-            console.log("render " + item.Type);
-            if(item.Type === "header"){
-                arr.push(<h1 key={item.id} style={item.style}>Header</h1>)
-            }
-            else if(item.Type === "text")
-                arr.push(<p key={item.id} style={item.style}>text</p>)
-            }
-        );
+        var children = this.generate(this.props.desc); //check if it already contains something
 
+        children.forEach(item => {
+            console.log("render " + item.desc);
+            //create different elements based on different D&D
+            switch(item.desc){
+                case "header":
+                    arr.push(<h1 key={item.id} style={item.style}>Header</h1>);
+                    break;
+                case "text":
+                    arr.push(<p key={item.id} style={item.style}>text</p>);
+                    break;
+            }
+        });
+
+        //return all of the generated html
         return(
             <div style={this.state.Style} onDragOver={(event) => event.preventDefault()} onDrop={(e) => this.onDrop(e)}>
                 {arr}
             </div>
         );
-    }
-
-    checkId(id) {
-        throw new Error('Method not implemented.');
-    }
-    
+    }    
 }
+
 
 export {
     Container
