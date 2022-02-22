@@ -58,12 +58,12 @@ export default function Authenticator(props){
         }
     }
 
-    userAuth(translateSign);
+    if (signed === "loading") {userAuth(translateSign);}
 
     switch(signed) {
         case "loading":
           // return words loading
-          return(<div>{signed}</div>);
+          return(<div>a;lskdfja;sldkfjas;dlfkj</div>);
         case "signed":
           // return profile of the user here
           return(props.children);
