@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import uuid from 'react-uuid';
 
 //styling for editor, drop area, and columns
@@ -41,7 +41,7 @@ export default class EditBox extends Component{
     onDrop = (ev) => {
         console.log("Drop")
         //get data
-        let desc = ev.dataTransfer.getData("desc");
+        let tag = ev.dataTransfer.getData("tag");
         let id = ev.dataTransfer.getData("id");
 
         //append new child
@@ -50,7 +50,7 @@ export default class EditBox extends Component{
                 ...this.state.Children,
                 {
                     "Type": "container",
-                    "desc": desc,
+                    "tag": tag,
                     "id": id
                 }
             ]
@@ -63,7 +63,7 @@ export default class EditBox extends Component{
         //generate html and place in array
         this.state.Children.forEach(container => {
             arr.push(<Container key={container.id} 
-                desc={container.desc}
+                tag={container.tag}
                 onDragOver={onDragOver}></Container>)
         });
 
@@ -82,8 +82,8 @@ export default class EditBox extends Component{
 
 
 //displays things horizontally
-class Container extends Component{
-    state = {
+function Container(){
+   const [seed, setSeed] = useState({
         "Children": [],
         "Style": {
             display:"flex",
@@ -92,18 +92,18 @@ class Container extends Component{
             height: "100px",
             marginTop: "10px"
         },
-    }
+    })
 
     //helps us make child elements
-    generate = (desc) => {
-        console.log(desc)
-        if(!desc) return [...this.state.Children];
+    const generate = (tag) => {
+        console.log(tag)
+        if(!tag) return [...this.state.Children];
         return (
             [
                 ...this.state.Children,
                 {
                     "id": uuid(),
-                    "desc": desc,
+                    "tag": tag,
                     "style": {}
                 }  
             ]
@@ -111,43 +111,43 @@ class Container extends Component{
     }
 
     //get data from dropped component
-    onDrop = (ev) => {
-        let desc = ev.dataTransfer.getData("desc");
-        if(desc === "container"){
+    const onDrop = (ev) => {
+        let tag = ev.dataTransfer.getData("tag");
+        if(tag === "container"){
             return;
         }
 
         //append new element
-        let arr = this.generate(desc);
+        let arr = this.generate(tag);
         this.setState({
             "Children": arr
         });   
     }
 
-    render() {
-        var arr = [];
-        var children = this.generate(this.props.desc); //check if it already contains something
 
-        children.forEach(item => {
-            console.log("render " + item.desc);
-            //create different elements based on different D&D
-            switch(item.desc){
-                case "header":
-                    arr.push(<h1 key={item.id} style={item.style}>Header</h1>);
-                    break;
-                case "text":
-                    arr.push(<p key={item.id} style={item.style}>text</p>);
-                    break;
-            }
-        });
+    var arr = [];
+    var children = this.generate(this.props.tag); //check if it already contains something
 
-        //return all of the generated html
-        return(
-            <div style={this.state.Style} onDragOver={(event) => event.preventDefault()} onDrop={(e) => this.onDrop(e)}>
-                {arr}
-            </div>
-        );
-    }    
+    children.forEach(item => {
+        console.log("render " + item.tag);
+        //create different elements based on different D&D
+        switch(item.tag){
+            case "header":
+                arr.push(<h1 key={item.id} style={item.style}>Header</h1>);
+                break;
+            case "text":
+                arr.push(<p key={item.id} style={item.style}>text</p>);
+                break;
+        }
+    });
+
+    //return all of the generated html
+    return(
+        <div style={this.state.Style} onDragOver={(event) => event.preventDefault()} onDrop={(e) => this.onDrop(e)}>
+            {arr}
+        </div>
+    );
+        
 }
 
 
