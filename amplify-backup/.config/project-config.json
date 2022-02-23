@@ -1,5 +1,5 @@
 {
-  "projectName": "ProjectEnchiridion",
+  "projectName": "enchiridion",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
@@ -8,10 +8,10 @@
       "SourceDir": "src",
       "DistributionDir": "build",
       "BuildCommand": "npm.cmd run-script build",
-      "StartCommand": "npm start"
+      "StartCommand": "npm.cmd run-script start"
     }
   },
   "providers": [
     "awscloudformation"
   ]
-}
+} 

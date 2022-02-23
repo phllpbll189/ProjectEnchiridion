@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import { Amplify, Auth } from 'aws-amplify';
 import {userAuth} from '../Homepage/UserButton';
 import '../../CSS/Signup/Authenticator.css';
+// Graphql imports
+import { API } from "aws-amplify";
+import * as mutations from './graphql/mutations';
+import awsconfig from './aws-exports';
 
 
 // sign up auth
@@ -213,6 +217,41 @@ function Form() {
     )
   }
 
+//------- Graphql Tinker --------//
+
+// configure amplify graphql
+Amplify.configure(awsconfig);
+
+
+// custom graphql endpoint
+Amplify.configure({
+  API: {
+    graphql_endpoint: 'https://7hcc7ea2bjgold3qbgenl5o35y.appsync-api.us-east-1.amazonaws.com/graphql'
+  }
+});
+
+
+const nameDetails = {
+  first_name: 'Spencer',
+  last_name: 'Bellucci'
+};
+
+const newName = await API.graphql({ 
+  query: mutations.createName, variables: {input: nameDetails}
+});
+
+  function GetName() {
+    return (
+      <div className="query_button">
+        <h1 className="prompt" onClick={queryName}>Query Name</h1>
+      </div>
+    )
+  }
+
+  const queryName = () => {
+    console.log(newName)
+  }
+
   return (
     <>
       <span className={switchActive()}>
@@ -240,8 +279,10 @@ function Form() {
 
           <div className="submit_button" onClick={submitForm}>{getSubmitText()}</div>
         </div>
+        <GetName/>
       </span>
       <GetCode/>
+      
     </>  
   );
 }
