@@ -1,156 +1,107 @@
-import React, { Component, useState } from 'react';
+import React, {useState } from 'react';
 import uuid from 'react-uuid';
+import styles from '../../CSS/Editor/EditBox.css'
 
-//styling for editor, drop area, and columns
-const editorStyle = {    
-    marginTop: "5%",
-    width: "800px",
-    display: "flex",
-    flexDirection: "column",
-    minHeight: "80vh",
-    maxHeight: "contain-content",
-    marginLeft: "23%",
-    background: "#E7E7E7",
-    padding: "10px"
-}
-
-const mainAreaStyle = {    
-    width: "800px",
-    height:"100%",
-    minHeight: "100px",
-}
-
-const column = {    
-    width: "800px",
-}
+const headerCSS = {width: "100%",textAlign: "center"} // this will ahve to be part of state soon.
 
 //will be used to determine index
-const onDragOver = (ev) => {
+function onDragOver(ev){
     ev.preventDefault();
 }
 
 //editor area
-export default class EditBox extends Component{
-    state = {
-        "Children": [],
-        "Style": {
-            padding: "10px"
-        }
-    }  
-
-    onDrop = (ev) => {
-        console.log("Drop")
-        //get data
-        let tag = ev.dataTransfer.getData("tag");
-        let id = ev.dataTransfer.getData("id");
-
-        //append new child
-        this.setState({
-            "Children": [
-                ...this.state.Children,
-                {
-                    "Type": "container",
-                    "tag": tag,
-                    "id": id
-                }
-            ]
-        }); 
+export default function EditBox(){
+    const [containers, setContainers] = useState([]);  
+    function onDrop(ev){ //append new container
+        setContainers([
+            ...containers,
+            containerGen(ev.dataTransfer.getData("tag"), ev.dataTransfer.getData("id"))
+        ]);
     }
-
-    render (){
-        var arr = [];
-
-        //generate html and place in array
-        this.state.Children.forEach(container => {
-            arr.push(<Container key={container.id} 
-                tag={container.tag}
-                onDragOver={onDragOver}></Container>)
-        });
-
-        //return a div with array
+    
+    //generate html and place in array
+    const elementArr = containers.map(container => {
+        console.log("generating Child Containers..")
         return (
-            <div style={editorStyle}>
-                <div style={column}>
-                    {arr}
-                </div>
-                <div style={mainAreaStyle}onDragOver={(event) => event.preventDefault()} onDrop={(e) => this.onDrop(e)}></div>
+            <Container 
+            key={container.id} tag={container.tag}>
+        </Container>);
+    });
+    //Holds child components horizontally
+    //return a div with arra
+    return (
+        <div className='editorStyle' onDragOver={onDragOver}>
+            <div className='column'>
+                {elementArr}
             </div>
-        );
-    }
+            <div className='main'onDragOver={onDragOver} onDrop={(e) => onDrop(e)}></div>
+        </div>
+    );
 }
 
+function Container(props){
+    const [containerStyle, setContainerStyle] = useState()
+    const [children, setChildren] = useState([{
+        "id": uuid(),
+        "tag": props.tag,
+        "style": {}
+    }]); //generate preset text if any
 
-
-//displays things horizontally
-function Container(){
-   const [seed, setSeed] = useState({
-        "Children": [],
-        "Style": {
-            display:"flex",
-            background:"#ADD8E6",
-            width: "100%",
-            height: "100px",
-            marginTop: "10px"
-        },
-    })
-
-    //helps us make child elements
-    const generate = (tag) => {
-        console.log(tag)
-        if(!tag) return [...this.state.Children];
-        return (
-            [
-                ...this.state.Children,
-                {
-                    "id": uuid(),
-                    "tag": tag,
-                    "style": {}
-                }  
-            ]
-        ); 
+    function containersDrop(ev){  //ondrop, add new element in json format
+        setChildren(generateJSON(ev.dataTransfer.getData("id"), ev.dataTransfer.getData("tag"), children)); 
     }
-
-    //get data from dropped component
-    const onDrop = (ev) => {
-        let tag = ev.dataTransfer.getData("tag");
-        if(tag === "container"){
-            return;
-        }
-
-        //append new element
-        let arr = this.generate(tag);
-        this.setState({
-            "Children": arr
-        });   
-    }
-
-
-    var arr = [];
-    var children = this.generate(this.props.tag); //check if it already contains something
-
-    children.forEach(item => {
+    
+    //GENERATES ELEMENTS WITHIN CONTAINER
+    const arr = children.map(item => {
         console.log("render " + item.tag);
-        //create different elements based on different D&D
+        
         switch(item.tag){
-            case "header":
-                arr.push(<h1 key={item.id} style={item.style}>Header</h1>);
-                break;
+            case "header":                              
+                return ( <h1 key={item.id} style={headerCSS}>Header</h1>);
+
             case "text":
-                arr.push(<p key={item.id} style={item.style}>text</p>);
-                break;
+                return (<p key={item.id} style={item.style}>text</p>);
+
+            default:
+                return null
         }
     });
 
-    //return all of the generated html
-    return(
-        <div style={this.state.Style} onDragOver={(event) => event.preventDefault()} onDrop={(e) => this.onDrop(e)}>
-            {arr}
-        </div>
-    );
-        
+    return(                            
+        <div className="container"  // will have to make this part of state soon
+        onDragOver={onDragOver} 
+        onDrop={(e) => containersDrop(e)}>
+                {
+                    arr //all of the generated jsx
+                }
+            </div>
+    );  
 }
 
+//HELPER FUNCTIONS
+function generateJSON (id, tag, children){ //genereates new json child object
+    return ([
+        ...children, 
+        {"id": id,
+        "tag": tag,
+        "style":{}
+        }
+    ]);
+}
+
+function containerGen(tag, id) { //generates new container
+    return(
+        {"Type": "container",
+        "tag": tag,
+        "id": id}
+    );
+}
+
+//========================================================================
 
 export {
     Container
 }
+    
+    
+    
