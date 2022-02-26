@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import uuid from 'react-uuid';
-import styles from '../../CSS/Editor/EditBox.css'
+import '../../CSS/Editor/EditBox.css'
 
 const headerCSS = {width: "100%",textAlign: "center"} // this will ahve to be part of state soon.
 
@@ -57,7 +57,7 @@ function Container(props){
         
         switch(item.tag){
             case "header":                              
-                return ( <h1 key={item.id} style={headerCSS}>Header</h1>);
+                return ( <h1 className="GenHeader" key={item.id} style={headerCSS}>Header</h1>);
 
             case "text":
                 return (<p key={item.id} style={item.style}>text</p>);
@@ -68,7 +68,7 @@ function Container(props){
     });
 
     return(                            
-        <div className="container"  // will have to make this part of state soon
+        <div className="GenContainers"  // will have to make this part of state soon
         onDragOver={onDragOver} 
         onDrop={(e) => containersDrop(e)}>
                 {
