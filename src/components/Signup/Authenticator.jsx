@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import { Amplify, Auth } from 'aws-amplify';
 import {userAuth} from '../Homepage/UserButton';
 import '../../CSS/Signup/Authenticator.css';
-// Graphql imports
-import { API } from "aws-amplify";
-import * as mutations from './graphql/mutations';
-import awsconfig from './aws-exports';
+
+// graphql imports
+
+import { API } from 'aws-amplify'
+import { createTodo, listTodos, updateTodo, deleteTodo } from './graphql/todo'
 
 
 // sign up auth
@@ -217,39 +218,44 @@ function Form() {
     )
   }
 
-//------- Graphql Tinker --------//
-
-// configure amplify graphql
-Amplify.configure(awsconfig);
+  //------ Graphql Tinker -------//
+  
 
 
-// custom graphql endpoint
-Amplify.configure({
-  API: {
-    graphql_endpoint: 'https://7hcc7ea2bjgold3qbgenl5o35y.appsync-api.us-east-1.amazonaws.com/graphql'
-  }
-});
-
-
-const nameDetails = {
-  first_name: 'Spencer',
-  last_name: 'Bellucci'
-};
-
-const newName = await API.graphql({ 
-  query: mutations.createName, variables: {input: nameDetails}
-});
-
-  function GetName() {
+  // query button
+  function QueryButton() {
     return (
-      <div className="query_button">
-        <h1 className="prompt" onClick={queryName}>Query Name</h1>
-      </div>
+      <div onClick={queryName} >Query Me</div>
     )
   }
 
-  const queryName = () => {
-    console.log(newName)
+  function CreateName() {
+    return (
+      <div onClick={createName} >Create Me</div>
+    )
+  }
+
+  // create todo item
+  async function createName() {
+    try {
+      const result = await API.graphql(createTodo, {
+        input: {
+          name: 'My first todo!'
+        }
+      })
+    } catch(err) {
+      console.log("Error creating data")
+    }
+  }
+
+  // query todo item
+  async function queryName() {
+    try {
+      const result = await API.graphql(listTodos)
+      console.log(result)
+    } catch(err) {
+      console.log("Error retrieving data")
+    }
   }
 
   return (
@@ -279,10 +285,10 @@ const newName = await API.graphql({
 
           <div className="submit_button" onClick={submitForm}>{getSubmitText()}</div>
         </div>
-        <GetName/>
       </span>
+      <CreateName/>
+      <QueryButton/>
       <GetCode/>
-      
     </>  
   );
 }

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/datastore": "^3.7.2",
-    "@aws-amplify/ui-react": "^2.5.0",
+    "@aws-amplify/ui-react": "^2.3.0",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@fontsource/roboto": "^4.5.1",
