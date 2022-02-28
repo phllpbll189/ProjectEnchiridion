@@ -5,9 +5,13 @@ import {HomePage, Editor, SignUp} from './routes';
 import '@aws-amplify/ui-react/styles.css';
 import { Authenticator } from '@aws-amplify/ui-react';
 
-import Amplify from 'aws-amplify';
-import aws_exports from './aws-exports'
-Amplify.configure(aws_exports);
+//import aws_exports from './aws-exports'
+
+import { Amplify, API, graphqlOperation } from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+// changed to use 'awsconfig' instead of 'aws_exports', what will this change?
+Amplify.configure(awsconfig);
 
 //this is what is called to render the react element initially.
 ReactDOM.render(

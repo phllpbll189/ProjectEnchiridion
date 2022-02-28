@@ -3,6 +3,11 @@ import { Amplify, Auth } from 'aws-amplify';
 import {userAuth} from '../Homepage/UserButton';
 import '../../CSS/Signup/Authenticator.css';
 
+// graphql imports
+
+import { API } from 'aws-amplify'
+import { createTodo, listTodos, updateTodo, deleteTodo } from './graphql/todo'
+
 
 // sign up auth
 async function signUp(username, password, email) {
@@ -213,6 +218,46 @@ function Form() {
     )
   }
 
+  //------ Graphql Tinker -------//
+  
+
+
+  // query button
+  function QueryButton() {
+    return (
+      <div onClick={queryName} >Query Me</div>
+    )
+  }
+
+  function CreateName() {
+    return (
+      <div onClick={createName} >Create Me</div>
+    )
+  }
+
+  // create todo item
+  async function createName() {
+    try {
+      const result = await API.graphql(createTodo, {
+        input: {
+          name: 'My first todo!'
+        }
+      })
+    } catch(err) {
+      console.log("Error creating data")
+    }
+  }
+
+  // query todo item
+  async function queryName() {
+    try {
+      const result = await API.graphql(listTodos)
+      console.log(result)
+    } catch(err) {
+      console.log("Error retrieving data")
+    }
+  }
+
   return (
     <>
       <span className={switchActive()}>
@@ -241,6 +286,8 @@ function Form() {
           <div className="submit_button" onClick={submitForm}>{getSubmitText()}</div>
         </div>
       </span>
+      <CreateName/>
+      <QueryButton/>
       <GetCode/>
     </>  
   );
