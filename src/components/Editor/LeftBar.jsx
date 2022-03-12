@@ -2,9 +2,9 @@ import React from 'react';
 import '../../CSS/Editor/LeftBar.css'
 import uuid from 'react-uuid';
 
-const onDragStart = (event, description) => {
-    console.log('dragstart:', description);
-    event.dataTransfer.setData("desc", description);
+const onDragStart = (event, tag) => {
+    console.log('dragstart:', tag);
+    event.dataTransfer.setData("tag", tag);
     event.dataTransfer.setData("id", uuid());
 }
 
