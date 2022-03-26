@@ -6,14 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 //AUTHENTICATE CURRENT USER
 async function userAuth(callback){
-    // await Auth.currentAuthenticatedUser({
-    //                 bypassCache: false //REQUEST LATEST DATA
-    //                 }).then(user => {
-    //                         callback(true, user);
-    //                 }).catch(err => {
-    //                     callback(false, err);
-    //                 }); 
-    await callback(true, "tempUser"); //temporary until we get requests
+     await Auth.currentAuthenticatedUser({
+        bypassCache: false //REQUEST LATEST DATA
+        }).then(user => {
+            callback(true, user);
+        }).catch(err => {
+            callback(false, err);
+        }); 
 };
 
 //ASYNCHRONOUS FUNCTION FOR SIGNING OUT

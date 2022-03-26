@@ -3,8 +3,6 @@ import '../../CSS/Signup/Profile.css';
 
 function Profile(){
 
-    const [success, setSuccess] = useState(false);
-
     return (
         <div className="Profile">
             
