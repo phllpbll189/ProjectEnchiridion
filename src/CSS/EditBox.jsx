@@ -24,11 +24,11 @@ export default function EditBox(){
         console.log("generating Child Containers..")
         return (
             <Container 
-            key={container.id} tag={container.tag}>
-        </Container>);
+                 key={container.id} tag={container.tag}>
+            </Container>);
     });
     //Holds child components horizontally
-    //return a div with array
+    //return a div with arra
     return (
         <div className='editorStyle' onDragOver={onDragOver}>
             <div className='column'>
@@ -52,9 +52,6 @@ function Container(props){
     }
     
     //GENERATES ELEMENTS WITHIN CONTAINER
-    //useMemo
-    //useCallback
-    //useRef
     const arr = children.map(item => {
         console.log("render " + item.tag);
         

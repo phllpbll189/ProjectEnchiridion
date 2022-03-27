@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "TestEnchiridion",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/spencerbellucci/Desktop/practice_ench/ProjectEnchiridion/amplify/backend/api/TestEnchiridion/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authenchiridion7266ccc3"
+      }
+    ]
+  }
+}
