@@ -5,7 +5,7 @@ import '../../CSS/Signup/Authenticator.css';
 
 
 // sign up auth
-async function signUp(username, password, email) {
+async function signUp(username, password, email, callback) {
   try {
     const { user } = await Auth.signUp({                 
       username,
@@ -13,10 +13,13 @@ async function signUp(username, password, email) {
       attributes: {
         email,
       }
-    });
+    })
+    callback(true)
     console.log(user)
+
   } catch (error) {
     console.log("error signing up: ", error);
+    console.log("type:", typeof error)
   }
 }
 
@@ -30,11 +33,14 @@ async function confirmSignUp(username, code) {
 }
 
 // sign user in
-async function signIn(username, password) {
+async function signIn(username, password, callback) {
   try {
     const user = await Auth.signIn(username, password);
   } catch (error) {
     console.log("error signing in", error);
+    if (error.message === "User is not confirmed."){
+      callback(true);
+    }
   }
 }
 
@@ -50,12 +56,13 @@ async function signOut() {
 export default function Authenticator(props){
     const [signed, setSigned] = useState("loading")
 
-    function translateSign(bool, _){
-        if(bool){
-            setSigned("signed");                          
-        } else {
-            setSigned("unsigned");
-        }
+    //callback for userAuth
+    function translateSign(b, _){
+      if(b){
+        setSigned("signed");                          
+      } else {
+        setSigned("unsigned");
+      }
     }
 
     userAuth(translateSign);
@@ -113,15 +120,16 @@ function Form() {
   // gets if form is on login or signup
   const submitForm = (event) => {
     event.preventDefault();
-    setRequireCode(true);
+    //setRequireCode(true);
+
+
 
     if (getContext() === "login_button") {
       // submit for login page
-      signIn(usernameText, passwordText);
+      signIn(usernameText, passwordText, setRequireCode);
     } else {
       // submit for signup page
-      signUp(usernameText, passwordText, emailText);
-      //confirmSignUp(usernameText, )
+      signUp(usernameText, passwordText, emailText, setRequireCode);
     }
   }
 
@@ -209,8 +217,22 @@ function Form() {
       <div className={makeCodeActive()}>
         <h1 className="prompt">Verification Code</h1>
         <input className="text_input" onChange={(e) => onCodeChanged(e)}></input>
+        <button
+          onClick={() => confirmSignUp}
+        >submit</button>
       </div>
     )
+  }
+
+  //this was taken from the docs here
+  //https://docs.amplify.aws/guides/authentication/custom-auth-flow/q/platform/js/#implementation-of-a-custom-authentication-flow
+
+  async function confirmSignUp() {
+    try {
+      await Auth.confirmSignUp(usernameText, userCode);
+      /* Once the user successfully confirms their account, update form state to show the sign in form*/
+      setRequireCode(false);
+    } catch (err) { console.log({ err }); }
   }
 
   return (
