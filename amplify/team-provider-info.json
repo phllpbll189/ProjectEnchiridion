@@ -10,6 +10,11 @@
       "StackName": "amplify-enchiridion-dev-183216",
       "StackId": "arn:aws:cloudformation:us-east-1:236199790110:stack/amplify-enchiridion-dev-183216/d9fac860-8b92-11ec-acc7-123ff8ed2d63",
       "AmplifyAppId": "d2swr2opuuygc0"
+    },
+    "categories": {
+      "auth": {
+        "enchiridion7266ccc3": {}
+      }
     }
   }
 }
