@@ -41,7 +41,7 @@ export default function UserButton(props){
     return(
         <>
             <div 
-                data-testid="DropdownMenuButtonNavbarUser"
+                data-testid="UserButton"
                 className='UserButton header' 
                 onClick={() => {
 
@@ -100,7 +100,7 @@ export default function UserButton(props){
             console.log("Not Signed In")
             return (
                 <div
-                    data-test  id="DropdownMenu" 
+                    data-testid="DropdownMenu" 
                     className='dropdown'>
                     <DropdownItem
                         nav='/SignUp'

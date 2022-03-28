@@ -14,8 +14,8 @@
     min-height: 80vh;
     max-height: contain-content;
     margin-left: 23%;
-    background: #E7E7E7;
-    padding: 10px;
+    background: #fefefe;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.479);
 }
 
 .main {

@@ -23,6 +23,23 @@ h1 {
 }
 
 .textContainer{
+    font-size: x-large;
+    margin-bottom: 1rem;
+    border: #353535;
+    border-width: 1px;
+    border-style: none;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.hoverSelector{
+    transition: filter 300ms;
+}
+
+.hoverSelector:hover {
+    filter:brightness(0.5);
+    background-color: #ffffff;
 
 }
 

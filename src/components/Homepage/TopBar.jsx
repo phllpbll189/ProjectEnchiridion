@@ -17,7 +17,6 @@ export default function TopBar(props){
 
             <div className='leftContainer start'>
                 {/*Grouping things in left container*/}
-                <div className="SvgBackground"></div>
                 <RedirectToHome></RedirectToHome>
             </div>
             <div className='middle'>
@@ -42,8 +41,7 @@ function RedirectToHome() {
     return (
         <div className='TopTitleContainer' onClick={handleClick}>
             <div className="TopTitle" >
-                Project 
-                <div>Enchiridion</div>
+                Handbooks
             </div>          
         </div>
     );

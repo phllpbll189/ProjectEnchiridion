@@ -2,12 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .tabs {
+
+
+
     display: flex;
     justify-content: space-between;
-    width: 10%;
+    width: 11rem;
 }
 
 .inputs {
@@ -16,14 +20,28 @@
     align-items: center;
 }
 
-.active {
-    background-color: #747474;
-    color: green;
+.formButtons{
+    background-color: #eeeeee;
+    font-weight: bold;
+    padding: 0.5em;
+    font-weight: bold;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
 }
 
-.inactive {
-    background-color: #747474;
-    color: lightgray;
+.activeButton {
+   
+    color: rgb(15, 15, 15);
+    border-style: solid;
+    border-color: #000000;
+    
+}
+
+.inactiveButton {
+    color: rgb(126, 126, 126);
+    border-color: #000000;
+
 }
 
 .submit_button {
@@ -33,14 +51,7 @@
     justify-content: center;
 }
 
-.attributes_active {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.attributes_inactive {
-    visibility: hidden;
+.attributes{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -48,25 +59,43 @@
 
 .form_element {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
 }
 
 .prompt {
     font-size: 115%;
 }
 
-.form_submit_inactive {
-    visibility: hidden;
-}
-
-.code_submit_active {
+.code_submit {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.code_submit_inactive {
+.main-container {
+    display: flex;
+    
+    width: 100vw;
+    height: 100vh;
+    
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.style-wrapper{
+    width: fit-content;
+    height: fit-content;
+
+    background-color: #747474;
+    border-radius: 10px;
+
+    padding: 0.5em;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.35);
+}
+
+.inactive {
     visibility: hidden;
 }
 

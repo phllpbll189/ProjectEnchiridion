@@ -24,9 +24,11 @@ export default function EditBox(){
         console.log("generating Child Containers..")
         return (
             <Container 
-            key={container.id} tag={container.tag}>
-        </Container>);
+                key={container.id} tag={container.tag}>
+            </Container>
+        )
     });
+
     //Holds child components horizontally
     //return a div with array
     return (
@@ -50,11 +52,8 @@ function Container(props){
     function containersDrop(ev){  //ondrop, add new element in json format
         setChildren(generateJSON(ev.dataTransfer.getData("id"), ev.dataTransfer.getData("tag"), children)); 
     }
+
     
-    //GENERATES ELEMENTS WITHIN CONTAINER
-    //useMemo
-    //useCallback
-    //useRef
     const arr = children.map(item => {
         console.log("render " + item.tag);
         

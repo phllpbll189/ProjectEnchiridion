@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Amplify, Auth } from 'aws-amplify';
+import { Amplify, Auth, verifyCurrentUserAttribute} from 'aws-amplify';
 import {userAuth} from '../Homepage/UserButton';
 import '../../CSS/Signup/Authenticator.css';
 
@@ -33,13 +33,13 @@ async function confirmSignUp(username, code) {
 }
 
 // sign user in
-async function signIn(username, password, callback) {
+async function signIn(username, password, setRequireCode) {
   try {
     const user = await Auth.signIn(username, password);
   } catch (error) {
     console.log("error signing in", error);
     if (error.message === "User is not confirmed."){
-      callback(true);
+      setRequireCode(true);
     }
   }
 }
@@ -92,16 +92,18 @@ function Form() {
   const [confirmPassText, setConfirmPassText] = useState();
   const [userCode, setUserCode] = useState();
   const [requireCode, setRequireCode] = useState(false);
+  const [requestCode, setRequestCode] = useState(false);
 
   const getName = (status) => {
-    if (status) { return "active" }
-    return "inactive";
+    if (status) { return "activeButton" }
+    return "inactiveButton";
   }
 
-  const getFunc = (status) => {
+  //switches between login and signup.
+  //makes sure you don't reload the form if you click an active button.
+  const switchMode = (status) => {
     if (status) { 
       flipState();
-
     }
   }
 
@@ -109,22 +111,11 @@ function Form() {
     setLogIn(!login);
   }
 
-  const getContext = () => {
-    if (login) {
-      return ("login_button");
-    } else {
-      return ("signup_button");
-    }
-  }
-
   // gets if form is on login or signup
   const submitForm = (event) => {
     event.preventDefault();
-    //setRequireCode(true);
 
-
-
-    if (getContext() === "login_button") {
+    if (login) {
       // submit for login page
       signIn(usernameText, passwordText, setRequireCode);
     } else {
@@ -134,91 +125,67 @@ function Form() {
   }
 
   // get what text to put in submit button
-  const getSubmitText = () => {
-    if (getContext() === "login_button") {
-      return ("Login");
-    } else {
-      return("Signup");
-    }
-  }
 
   // check if email submission should be active
   const getActive = () => {
-    if (getContext() === "login_button") {
-      return ("attributes_inactive");
+    if (login) {
+      return ("inactive");
     } else {
-      return("attributes_active");
+      return("active");
     }
   }
 
-  const switchActive = () => {
+  const getCodeActive = () => {
     if (requireCode) {
-      return "form_submit_inactive";
-    } else
-    return "form_submit_active";
-  }
-
-  const makeCodeActive = () => {
-    if (requireCode) {
-      return "code_submit_active";
+      return "active";
     } else {
-      return "code_submit_inactive";
+      return "inactive";
     }
   }
 
   // ---- helper functions to update states ----//
 
   // on text entered in to username field
-  const onUserChange = (event) => {
-    setUsernameText(event.target.value)
-    console.log(usernameText)
-  }
 
-  // on text entered into email field
-  const onEmailChanged = (event) => {
-    setEmailText(event.target.value)
-    console.log(emailText)
+  const onChange = (event, setter) => {
+    event.preventDefault();
+    setter(event.target.value)
   }
-
-  // on text entered into password field
-  const onPassChanged = (event) => {
-    setPasswordText(event.target.value)
-    console.log(passwordText)
-  }
-
-  // on password text entered
-  const onConfirmPassChanged = (event) => {
-    setConfirmPassText(event.target.value)
-    console.log(confirmPassText)
-  }
-
-  // on verification code changed
-  const onCodeChanged = (event) => {
-    setUserCode(event.target.value)
-    console.log(userCode)
-  }
-
   // switch between tabs
   function Switch() {
     return (
-      <div className="form">
+
         <div className="tabs">
-          <div className={getName(login)} onClick={() => getFunc(!login)}>Sign In</div>
-          <div className={getName(!login)} onClick={() => getFunc(login)}>Sign Up</div>
+          <div className={"formButtons " + getName(login)} onClick={() => switchMode(!login)}>Login</div>
+          <div className={"formButtons " + getName(!login)} onClick={() => switchMode(login)}>Sign Up</div>
         </div>
-      </div>
-      
+
     ) 
+  }
+  async function confirmSignUp() {
+    try {
+      await Auth.confirmSignUp(usernameText, userCode);
+      setRequireCode(false);
+    } catch (err) { 
+      if(err.name == "ExpiredCodeException"){
+        verifyCurrentUserAttribute()
+      }
+     }
   }
 
   // html for where user enteres verification code
   function GetCode() {
     return (
-      <div className={makeCodeActive()}>
+      <div className={"code_submit " + getCodeActive()}>
         <h1 className="prompt">Verification Code</h1>
-        <input className="text_input" onChange={(e) => onCodeChanged(e)}></input>
+
+        <input 
+          className="text_input" 
+          onChange={(e) => onChange(e, setUserCode)}
+        ></input>
+
         <button
-          onClick={() => confirmSignUp}
+          onClick={confirmSignUp}
         >submit</button>
       </div>
     )
@@ -226,44 +193,87 @@ function Form() {
 
   //this was taken from the docs here
   //https://docs.amplify.aws/guides/authentication/custom-auth-flow/q/platform/js/#implementation-of-a-custom-authentication-flow
+  
+  //if verification needed, then verify
+  if(requireCode){
+    return(
+      <>
+      <div className={
+          "main-container "
+        }>
 
-  async function confirmSignUp() {
-    try {
-      await Auth.confirmSignUp(usernameText, userCode);
-      /* Once the user successfully confirms their account, update form state to show the sign in form*/
-      setRequireCode(false);
-    } catch (err) { console.log({ err }); }
-  }
+        <div className='style-wrapper'>     
+          <div className={"code_submit " + getCodeActive()}>
+            <h1 className="prompt">Verification Code</h1>
 
-  return (
-    <>
-      <span className={switchActive()}>
-        <Switch/>
-        <div className="inputs">
-          <div className={getActive()}>
-            <h1 className="prompt">Email</h1>
-            <input className="text_input" onChange={(e) => onEmailChanged(e)}></input>
-          </div>
+            <input 
+              className="text_input" 
+              onChange={(e) => onChange(e, setUserCode)}
+            ></input>
 
-          <div className="form_element">
-            <h1 className="prompt">Username</h1>
-            <input className="text_input" onChange={(e) => onUserChange(e)}></input>
-          </div>
-          
-          <div className="form_element">
-            <h1 className="prompt">Password</h1>
-            <input className="text_input" onChange={(e) => onPassChanged(e)}></input>
-          </div>
-
-          <div className={getActive()}>
-            <h1 className="prompt">Confirm Password</h1>
-            <input className="text_input" onChange={(e) => onConfirmPassChanged(e)}></input>
-          </div>
-
-          <div className="submit_button" onClick={submitForm}>{getSubmitText()}</div>
+            <button
+              onClick={confirmSignUp}
+            >submit</button>
+            </div>
         </div>
-      </span>
-      <GetCode/>
-    </>  
-  );
+      </div>
+      </>
+    )
+  }
+  
+  else{
+    return (
+      <>
+        <div className={
+            "main-container "
+          }>
+  
+          <div className='style-wrapper'>     
+            <Switch/>
+  
+            <div className="inputs">
+              
+              <div className={"form_element " + getActive()}>
+                <h1 className="prompt">Email</h1>
+                <input className="text_input" onChange={(e) => onChange(e, setEmailText)}></input>
+              </div>
+  
+              <div className="form_element">
+                <h1 className="prompt">Username</h1>
+                <input className="text_input" onChange={(e) => onChange(e, setUsernameText)}></input>
+              </div>
+              
+              <div className="form_element">
+                <h1 className="prompt">Password</h1>
+                <input className="text_input" onChange={(e) => onChange(e, setPasswordText)}></input>
+              </div>
+  
+              <div className={"form_element " + getActive()}>
+                <h1 className="prompt">Confirm Password</h1>
+                <input className="text_input" onChange={(e) => onChange(e, setConfirmPassText)}></input>
+              </div>
+  
+              <div className="formButtons" onClick={submitForm}>
+                {getActive() === "inactive" ? "login" : "signup"}
+              </div>
+            </div>
+            <div className={"code_submit " + getCodeActive()}>
+              <h1 className="prompt">Verification Code</h1>
+  
+              <input 
+                className="text_input" 
+                onChange={(e) => onChange(e, setUserCode)}
+              ></input>
+  
+              <button
+                onClick={confirmSignUp}
+              >submit</button>
+            </div>
+          </div>
+        </div>
+      </>  
+    );
+  }
+  
+  
 }

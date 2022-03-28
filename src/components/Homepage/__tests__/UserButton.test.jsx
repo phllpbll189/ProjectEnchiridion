@@ -7,28 +7,30 @@ import { BrowserRouter } from 'react-router-dom';
 
 //failing need to be able to move a component to the next index in an array
 
-
-test("User button renders", () => {{
+beforeEach(() =>
+{
     render(
         <BrowserRouter>
             <UserButton></UserButton>
         </BrowserRouter>
     )
-    expect(screen.queryByTestId('DropdownMenuButtonNavbarUser')).toBeInTheDocument();
+})
+
+test("User button renders", () => {{
+    expect(screen.queryByTestId('UserButton')).toBeInTheDocument();
 }})
 
 test("On click Dropdown appears", () => {{
-    render(
-        <BrowserRouter>
-            <UserButton></UserButton>
-        </BrowserRouter>
-    )
-
-    fireEvent.click(screen.queryByTestId("DropdownMenuButtonNavbarUser"));
-    
-
+    fireEvent.click(screen.queryByTestId("UserButton"));
     const menu = screen.queryByTestId('DropdownMenu')
 
     expect(menu).toBeInTheDocument();
 }})
 
+test("Sign in Form appears in dropdown menu", () => {{
+    fireEvent.click(screen.queryByTestId("UserButton"));
+    fireEvent.click(screen.queryByText("sign in"));
+    const form = screen.queryByTestId('SignInForm')
+
+    expect(form).toBeInTheDocument();
+}})
