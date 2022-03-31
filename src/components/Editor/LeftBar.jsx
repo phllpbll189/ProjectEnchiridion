@@ -21,8 +21,21 @@ export default function LeftBar(){
 function DragTexts(){
     return (
         <div>
-            <div className='textContainer hoverSelector' draggable={true} onDragStart={(e) => onDragStart(e, "header")} ><h1>Header</h1></div>
-            <div className='textContainer'draggable={true} onDragStart={(e) => onDragStart(e, "text")}>Text</div>
+            <div 
+            className='textContainer hoverSelector' 
+            draggable={true} 
+            onDragStart={(e) => onDragStart(e, "header")} 
+            >
+                <h1>Header</h1>
+            </div>
+
+            <div 
+            className='textContainer'
+            draggable={true} 
+            onDragStart={(e) => onDragStart(e, "text")}
+            >
+                Text
+            </div>
         </div>  
     );
 }

@@ -12,7 +12,7 @@ function onDragOver(ev){
 //editor area
 export default function EditBox(){
     const [containers, setContainers] = useState([]);  
-    function onDrop(ev){ //append new container
+    function onDrop(ev){ //append new column
         setContainers([
             ...containers,
             containerGen(ev.dataTransfer.getData("tag"), ev.dataTransfer.getData("id"))
@@ -24,7 +24,7 @@ export default function EditBox(){
         console.log("generating Child Containers..")
         return (
             <Container 
-                key={container.id} tag={container.tag}>
+            key={container.id} tag={container.tag}>
             </Container>
         )
     });
@@ -41,33 +41,42 @@ export default function EditBox(){
     );
 }
 
+
+// TODO move Container into editbox
+// then move containerstate up into Editbox
+// The only thing that container will need is the index of its properties
+// then put the whole json in state
+
 function Container(props){
     const [containerStyle, setContainerStyle] = useState()
-    const [children, setChildren] = useState([{
+    const [children, setChildren] = useState([{ 
         "id": uuid(),
         "tag": props.tag,
-        "style": {}
+        "style": {},
+        "content": props.tag
     }]); //generate preset text if any
 
     function containersDrop(ev){  //ondrop, add new element in json format
         setChildren(generateJSON(ev.dataTransfer.getData("id"), ev.dataTransfer.getData("tag"), children)); 
     }
 
-    
-    const arr = children.map(item => {
+    const arr = children.map(item => { //map over the items dropped in the container and generate them.
         console.log("render " + item.tag);
         
         switch(item.tag){
             case "header":                              
-                return ( <h1 className="GenHeader" key={item.id} style={headerCSS}>Header</h1>);
+                return ( <h1 className="GenHeader" key={item.id} style={headerCSS}>{item.content}</h1>);
 
             case "text":
-                return (<p key={item.id} style={item.style}>text</p>);
+                return (<p key={item.id} style={item.style}>{item.content}</p>);
 
             default:
                 return null
         }
     });
+
+
+
 
     return(                            
         <div className="GenContainers"  // will have to make this part of state soon
@@ -80,13 +89,17 @@ function Container(props){
     );  
 }
 
-//HELPER FUNCTIONS
+
+
+
+//===============HELPER FUNCTIONS============================================
 function generateJSON (id, tag, children){ //genereates new json child object
     return ([
         ...children, 
         {"id": id,
         "tag": tag,
-        "style":{}
+        "style":{},
+        "content": tag
         }
     ]);
 }
@@ -98,6 +111,9 @@ function containerGen(tag, id) { //generates new container
         "id": id}
     );
 }
+
+
+
 
 //========================================================================
 
