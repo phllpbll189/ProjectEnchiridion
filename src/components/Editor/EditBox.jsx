@@ -32,11 +32,11 @@ export default function EditBox(){
     //Holds child components horizontally
     //return a div with array
     return (
-        <div className='editorStyle' onDragOver={onDragOver}>
+        <div className='editorStyle' data-testid="EditBox" onDragOver={onDragOver} onDrop={(e) => onDrop(e)}>
+            
             <div className='column'>
                 {elementArr}
             </div>
-            <div className='main'onDragOver={onDragOver} onDrop={(e) => onDrop(e)}></div>
         </div>
     );
 }
@@ -65,18 +65,25 @@ function Container(props){
         
         switch(item.tag){
             case "header":                              
-                return ( <h1 className="GenHeader" key={item.id} style={headerCSS}>{item.content}</h1>);
+                return ( 
+                    <h1 
+                    className="GenHeader"
+                    contenteditable="true" 
+                    key={item.id} 
+                    style={headerCSS}
+                    data-testid="Dropped-headerDND"
+                    >
+                        {item.content}
+                    </h1>
+                );
 
             case "text":
-                return (<p key={item.id} style={item.style}>{item.content}</p>);
+                return (<p key={item.id} contenteditable="true" style={item.style}>{item.content}</p>);
 
             default:
                 return null
         }
     });
-
-
-
 
     return(                            
         <div className="GenContainers"  // will have to make this part of state soon

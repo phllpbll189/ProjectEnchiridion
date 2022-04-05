@@ -19,16 +19,6 @@ async function signUp(username, password, email, callback) {
 
   } catch (error) {
     console.log("error signing up: ", error);
-    console.log("type:", typeof error)
-  }
-}
-
-// confirm signup 
-async function confirmSignUp(username, code) {
-  try {
-    await Auth.confirmSignUp(username, code);
-  } catch (error) {
-      console.log('error confirming sign up', error);
   }
 }
 
@@ -38,7 +28,7 @@ async function signIn(username, password, setRequireCode) {
     const user = await Auth.signIn(username, password);
   } catch (error) {
     console.log("error signing in", error);
-    if (error.message === "User is not confirmed."){
+    if (error.message === "User is not confirmed."){     
       setRequireCode(true);
     }
   }
@@ -118,9 +108,12 @@ function Form() {
     if (login) {
       // submit for login page
       signIn(usernameText, passwordText, setRequireCode);
-    } else {
+    } else if(!login && passwordText == setPasswordText) {
       // submit for signup page
+
       signUp(usernameText, passwordText, emailText, setRequireCode);
+    } else {
+      console.log("Passwords don't match.")
     }
   }
 
@@ -173,27 +166,6 @@ function Form() {
      }
   }
 
-  // html for where user enteres verification code
-  function GetCode() {
-    return (
-      <div className={"code_submit " + getCodeActive()}>
-        <h1 className="prompt">Verification Code</h1>
-
-        <input 
-          className="text_input" 
-          onChange={(e) => onChange(e, setUserCode)}
-        ></input>
-
-        <button
-          onClick={confirmSignUp}
-        >submit</button>
-      </div>
-    )
-  }
-
-  //this was taken from the docs here
-  //https://docs.amplify.aws/guides/authentication/custom-auth-flow/q/platform/js/#implementation-of-a-custom-authentication-flow
-  
   //if verification needed, then verify
   if(requireCode){
     return(

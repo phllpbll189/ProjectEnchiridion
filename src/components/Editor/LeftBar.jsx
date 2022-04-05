@@ -2,7 +2,7 @@ import React from 'react';
 import '../../CSS/Editor/LeftBar.css'
 import uuid from 'react-uuid';
 
-const onDragStart = (event, tag) => {
+function onDragStart(event, tag) {
     console.log('dragstart:', tag);
     event.dataTransfer.setData("tag", tag);
     event.dataTransfer.setData("id", uuid());
@@ -24,7 +24,8 @@ function DragTexts(){
             <div 
             className='textContainer hoverSelector' 
             draggable={true} 
-            onDragStart={(e) => onDragStart(e, "header")} 
+            onDragStart={(e) => onDragStart(e, "header")}
+            data-testid="headerDND"
             >
                 <h1>Header</h1>
             </div>

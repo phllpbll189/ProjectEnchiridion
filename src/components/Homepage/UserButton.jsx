@@ -3,7 +3,6 @@ import '../../CSS/Homepage/UserButton.css';
 import { Auth } from 'aws-amplify';
 import { useNavigate } from "react-router-dom";
 
-
 /*
 UserAuth:
     Takes a callback function that recieves:
@@ -15,18 +14,18 @@ UserAuth:
         if not it will send an error code
 */
 async function userAuth(callback){
-     await Auth.currentAuthenticatedUser({
-        bypassCache: false //REQUEST LATEST DATA 
+    await Auth.currentAuthenticatedUser({
+    /*
+        FIX ME!
 
-        //TODO need to see how to cache the user
-        //look into this https://redux.js.org/
-        //this wont be exactly caching but it will let the user use the webapp without sending a request everytime you click that button
-    
-        }).then(user => {
-            callback(true, user);
-        }).catch(err => {
-            callback(false, err);
-        }); 
+        bypassCache needs to be set to false when testing is finished.
+    */
+        bypassCache: true 
+    }).then(user => {
+        callback(true, user);
+    }).catch(err => {
+        callback(false, err);
+    }); 
 };
 
 export default function UserButton(props){
@@ -46,18 +45,16 @@ export default function UserButton(props){
                 onClick={() => {
 
                     //if else statement depending on if there is cached data
-                    userAuth((result, outcome) => {
-                        if(result){
-                            setSuccess(true);
-                            /*
-                                #TODO
-                                Need to Cache User Data Here
-
-                            */
-                        }
-                    }); 
-
                     setOpen(!open)
+                    
+                    if(open){
+                        userAuth((result, outcome) => {
+                            if(result){
+                                setSuccess(true);
+                                console.log(outcome)
+                            }
+                        }); 
+                    }
                 }}
             ></div>
         
@@ -104,7 +101,7 @@ export default function UserButton(props){
                     className='dropdown'>
                     <DropdownItem
                         nav='/SignUp'
-                        leftIcon={<div className='UserButton left'></div>}
+                        leftIcon={<div data-testid="Signup" className='UserButton left'></div>}
                     >
                         sign in
                     </DropdownItem>
@@ -147,7 +144,6 @@ export default function UserButton(props){
         );
     }
 }
-
 export {
     userAuth
 }
