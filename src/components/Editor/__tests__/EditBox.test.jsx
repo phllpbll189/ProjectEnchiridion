@@ -76,3 +76,14 @@ test("header is drag and droppable", () => {{
     that seems out of scope of the project..
     for now.
 */
+
+/*
+    POSSIBLY JUST TEST ONDRAGSTART AND DROP FUNCTIONS
+    PRO:
+        as long as they return the correct jsx it should be okay.
+        much easier to test.
+        
+
+    CON:
+        It will need to be exported. this could potentially be bad.
+*/

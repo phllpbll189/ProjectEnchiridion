@@ -2,31 +2,7 @@ import React, {useState} from 'react';
 import '../../CSS/Homepage/UserButton.css';
 import { Auth } from 'aws-amplify';
 import { useNavigate } from "react-router-dom";
-
-/*
-UserAuth:
-    Takes a callback function that recieves:
-        Boolean: if the user is authenticated
-
-        if its true it send a user object
-        more research needs to be done about the exact shape of the object
-
-        if not it will send an error code
-*/
-async function userAuth(callback){
-    await Auth.currentAuthenticatedUser({
-    /*
-        FIX ME!
-
-        bypassCache needs to be set to false when testing is finished.
-    */
-        bypassCache: true 
-    }).then(user => {
-        callback(true, user);
-    }).catch(err => {
-        callback(false, err);
-    }); 
-};
+import { userAuth } from '../Util/userAuth';
 
 export default function UserButton(props){
     const [open, setOpen] = useState(false);
@@ -48,12 +24,7 @@ export default function UserButton(props){
                     setOpen(!open)
                     
                     if(open){
-                        userAuth((result, outcome) => {
-                            if(result){
-                                setSuccess(true);
-                                console.log(outcome)
-                            }
-                        }); 
+                        userAuth(setAuthStatus()); 
                     }
                 }}
             ></div>
@@ -62,6 +33,14 @@ export default function UserButton(props){
         </>
     );
 
+    function setAuthStatus() {
+        return (result, outcome) => {
+            if (result) {
+                setSuccess(true);
+                console.log(outcome);
+            }
+        };
+    }
 
     function DropdownMenu(props) {
         
