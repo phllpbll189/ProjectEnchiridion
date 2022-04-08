@@ -32,11 +32,14 @@ export default function EditBox(){
     //Holds child components horizontally
     //return a div with array
     return (
-        <div className='editorStyle' data-testid="EditBox" onDragOver={onDragOver} onDrop={(e) => onDrop(e)}>
+        <div className='main' data-testid="EditBox" onDragOver={onDragOver}>
             
-            <div className='column'>
+           
+            
                 {elementArr}
-            </div>
+          
+
+            <div className='spacing' onDrop={(e) => onDrop(e)}/>
         </div>
     );
 }

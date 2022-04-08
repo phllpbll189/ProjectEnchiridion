@@ -5,11 +5,12 @@
     height: 100%;
     
     background-color: #F9FAFB;
-    
+    padding-top: 7em;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
+    
 }
 
 h1 {
@@ -23,8 +24,8 @@ h1 {
 }
 
 .textContainer{
-    font-size: x-large;
-    margin-bottom: 1rem;
+    font-size: large;
+    margin-bottom: .5rem;
     border: #353535;
     border-width: 1px;
     border-style: none;

@@ -12,8 +12,6 @@ export default function LeftBar(){
     return(
         <div className='editor_left'>
             <DragTexts/>
-            <div></div>
-            <div></div>
         </div>
     );
 }
@@ -31,7 +29,7 @@ function DragTexts(){
             </div>
 
             <div 
-            className='textContainer'
+            className='textContainer hoverSelector'
             draggable={true} 
             onDragStart={(e) => onDragStart(e, "text")}
             >
