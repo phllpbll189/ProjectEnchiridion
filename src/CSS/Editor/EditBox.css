@@ -19,8 +19,25 @@
     height: 5em;
 }
 
+.default-list{
+    display: list-item;
+    list-style: circle;
+    list-style-position: inside;
+}
+
 .GenHeader{
     width: 100%;
     text-align: center;
 }
+
+.spacer{
+    width: 0em;
+    transition: filter 300ms;
+}
+
+.GenContainers:hover .spacer{
+    width: 1em;
+    background-color: aquamarine;
+}
+
 

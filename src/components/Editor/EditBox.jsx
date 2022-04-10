@@ -1,6 +1,9 @@
+import { ControlPointDuplicate } from '@mui/icons-material';
+import { deepPurple } from '@mui/material/colors';
 import React, {useState } from 'react';
 import uuid from 'react-uuid';
 import '../../CSS/Editor/EditBox.css'
+import CustomList from './CustomList'
 
 const headerCSS = {width: "100%",textAlign: "center"} // this will ahve to be part of state soon.
 
@@ -33,13 +36,8 @@ export default function EditBox(){
     //return a div with array
     return (
         <div className='main' data-testid="EditBox" onDragOver={onDragOver}>
-            
-           
-            
-                {elementArr}
-          
-
-            <div className='spacing' onDrop={(e) => onDrop(e)}/>
+            {elementArr}
+            <div data-testid='editor-spacing' className='spacing' onDrop={(e) => onDrop(e)}/>
         </div>
     );
 }
@@ -63,39 +61,84 @@ function Container(props){
         setChildren(generateJSON(ev.dataTransfer.getData("id"), ev.dataTransfer.getData("tag"), children)); 
     }
 
-    const arr = children.map(item => { //map over the items dropped in the container and generate them.
-        console.log("render " + item.tag);
+    function innerDrag(ev, index){
+       
+        console.log('dragstart:', children[index].content);
+        ev.dataTransfer.setData("tag", children[index].tag);
+        ev.dataTransfer.setData("id", children[index].id);
         
-        switch(item.tag){
-            case "header":                              
-                return ( 
-                    <h1 
-                    className="GenHeader"
-                    contenteditable="true" 
-                    key={item.id} 
-                    style={headerCSS}
-                    data-testid="Dropped-headerDND"
-                    >
-                        {item.content}
-                    </h1>
-                );
-
-            case "text":
-                return (<p key={item.id} contenteditable="true" style={item.style}>{item.content}</p>);
-
-            default:
-                return null
+        let arr = [];
+        
+        for(let i = 0; i<=children.length - 1; i++){
+            if(i != index){
+                arr.push(children[i])
+            }
         }
-    });
+        
+    }
+
+    
+    const arr = []//children.map(item => { //map over the items dropped in the container and generate them.
+        for(let i = 0; i <= children.length - 1; i++){
+            arr.push(
+                <div 
+                className={"spacer"}
+                id={"spacer " + i}
+                key={"spacer " + i}
+                //ondrop here
+                />
+            )
+      
+
+            console.log("render " + children[i].tag);
+            switch(children[i].tag){
+                case "header":                              
+                    arr.push( 
+                        <h1 
+                        draggable={true}
+                        className="GenHeader"
+                        contentEditable="true" 
+                        key={children[i].id} 
+                        style={headerCSS}
+                        data-testid="Dropped-headerDND"
+                        onDragStart={(ev, i) => innerDrag(ev, i)}
+                        onChange={(e) => {children[i] = e.target.value}}
+                        >
+                            {children[i].content}
+                        </h1>);
+                    break;
+
+                case "text":
+                    arr.push(<p key={children[i].id} contentEditable="true" draggable={true} style={children[i].style}>{children[i].content}</p>);
+                    break;
+
+                case "list":
+                    arr.push(<CustomList
+                        draggable={true}
+                        id={children[i].id}
+                    />)
+                    break;
+            }
+    }
+    arr.push(
+        <div 
+        className={"spacer"}
+        id={"spacer " + children.length}
+        key={"spacer " + children.length}
+        //ondrop here
+        />
+    )
+
 
     return(                            
         <div className="GenContainers"  // will have to make this part of state soon
-        onDragOver={onDragOver} 
-        onDrop={(e) => containersDrop(e)}>
+        onDrop={(e) => {
+            containersDrop(e)
+        }}>
                 {
                     arr //all of the generated jsx
                 }
-            </div>
+        </div>
     );  
 }
 

@@ -13,6 +13,19 @@
     
 }
 
+.drag-list{
+    width: 3em;
+    height: 3em;
+    border-bottom: #808080;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5%;
+
+    list-style-type: disc;
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
 h1 {
     margin: 0;
 }
@@ -41,6 +54,7 @@ h1 {
 .hoverSelector:hover {
     filter:brightness(0.5);
     background-color: #ffffff;
-
 }
+
+
 
