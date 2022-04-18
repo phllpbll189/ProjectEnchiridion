@@ -1,14 +1,15 @@
-.form {
+.main-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     
+    width: 100vw;
+    height: 100vh;
+    
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .tabs {
-
-
-
     display: flex;
     justify-content: space-between;
     width: 11rem;
@@ -44,19 +45,6 @@
 
 }
 
-.submit_button {
-    background-color: #747474;
-    color: lightgray;
-    display: flex;
-    justify-content: center;
-}
-
-.attributes{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
 .form_element {
     display: flex;
     align-items: center;
@@ -65,23 +53,6 @@
 
 .prompt {
     font-size: 115%;
-}
-
-.code_submit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.main-container {
-    display: flex;
-    
-    width: 100vw;
-    height: 100vh;
-    
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .style-wrapper{

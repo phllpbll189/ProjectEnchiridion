@@ -22,10 +22,9 @@ function SignUp(){
             <Authenticator>
                 <Profile/>
             </Authenticator>
-
         </>
     );  
 } 
-
+ 
 export default SignUp;
 
