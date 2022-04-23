@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {signIn, signOut, signUp, onChange, SwitchActiveState, getButtonName} from "./AuthUtil";
+import {signIn, signOut, signUp, onChange, SwitchActiveState, getButtonName, resendConfirmationCode} from "./AuthUtil";
 
 export default function Form(props) {
     const [login, setLogIn] = useState(true)
@@ -35,10 +35,11 @@ export default function Form(props) {
     
         if (login) {
             signIn(usernameText, passwordText, props.codeRequired);
-    
+
         } else if(!login && passwordText === confirmPassText) {
             signUp(usernameText, passwordText, emailText, props.codeRequired)
-   
+            
+
         } else {
             console.log("Passwords don't match.")
         }
