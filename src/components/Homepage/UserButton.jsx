@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../../CSS/Homepage/UserButton.css';
 import { Auth } from 'aws-amplify';
 import { useNavigate } from "react-router-dom";
-import { userAuth } from '../Util/userAuth';
+import { userAuth } from  '../Signup/AuthUtil';
 
 export default function UserButton(props){
     const [open, setOpen] = useState(false);
@@ -57,8 +57,7 @@ export default function UserButton(props){
             }
             
             return (
-                <a
-                href='#' 
+                <a 
                 className='menu-item'
                 onClick={handleClick}
                 >
@@ -113,9 +112,9 @@ export default function UserButton(props){
                     Make a guide
                 </DropdownItem>
 
-                {/* <DropdownItem
+               <DropdownItem
                 signOut={true}
-                >Sign Out</DropdownItem> */}
+                >Sign Out</DropdownItem> 
 
                 <DropdownItem
                 >About Us</DropdownItem>
