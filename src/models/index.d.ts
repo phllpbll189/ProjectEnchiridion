@@ -23,6 +23,7 @@ type UserMetaData = {
 export declare class Ratings {
   readonly id: string;
   readonly Stats?: (Stats | null)[] | null;
+  readonly ratingType: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<Ratings, RatingsMetaData>);
@@ -54,10 +55,10 @@ export declare class Guide {
 
 export declare class User {
   readonly id: string;
-  readonly usernam: string;
+  readonly username: string;
   readonly tagline?: string | null;
   readonly Guides?: (Guide | null)[] | null;
-  readonly Stats?: (Stats | null)[] | null;
+  readonly Stats?: (Guide | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   constructor(init: ModelInit<User, UserMetaData>);

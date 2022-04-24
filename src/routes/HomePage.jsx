@@ -2,6 +2,7 @@ import React from 'react';
 import TopBar from '../components/Homepage/TopBar';
 import '../CSS/Homepage/HomePage.css';
 import SearchBar from '../components/Homepage/SearchBar';
+import Test from '../components/Homepage/Test'
 
 
 
@@ -10,16 +11,17 @@ function HomePage(){
 
   //generate 2 different divs here based on signed in data
     
-  return (
-      /* 
-      This returns the tap nav bar
-      */
-      <>
+return (
+  /* 
+  This returns the tap nav bar
+  */
+    <>
         <TopBar>
-          <SearchBar/>  
+            <SearchBar/>
         </TopBar>
-      </>
-  );
+        <Test></Test>
+    </>
+);
     
 }
 

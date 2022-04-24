@@ -6,11 +6,11 @@ import { userAuth } from  '../Signup/AuthUtil';
 
 export default function UserButton(props){
     const [open, setOpen] = useState(false);
-    const [success, setSuccess] = useState(false);
+    const [signedin, setSignedIn] = useState(false);
 
     async function userSignOut(){
-        await Auth.signOut().then(setOpen(!open)).then(setSuccess(false)); 
-        await setOpen (!open);        
+        await Auth.signOut().then(setOpen(!open)).then(setSignedIn(false)); 
+        setOpen(false);        
     }
 
     return(
@@ -19,24 +19,24 @@ export default function UserButton(props){
                 data-testid="UserButton"
                 className='UserButton header' 
                 onClick={() => {
+                
+                    userAuth((signed, user) => {
+                        setSignedIn(signed)
+                        setOpen(!open)
+                    })
 
-                    //if else statement depending on if there is cached data
-                    setOpen(!open)
-                    
-                    if(open){
-                        userAuth(setAuthStatus()); 
-                    }
+   
                 }}
             ></div>
         
-            {open && <DropdownMenu success={success}/>}
+            {open && <DropdownMenu signedin={signedin}/>}
         </>
     );
 
     function setAuthStatus() {
         return (result, outcome) => {
             if (result) {
-                setSuccess(true);
+                setSignedIn(true);
                 console.log(outcome);
             }
         };
@@ -71,7 +71,7 @@ export default function UserButton(props){
         }
         
         //IF NOT SIGNED IN
-        if(!props.success){
+        if(!props.signedin){
             console.log("Not Signed In")
             return (
                 <div

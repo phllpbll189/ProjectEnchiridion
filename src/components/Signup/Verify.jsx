@@ -1,20 +1,23 @@
 import React, {useState} from 'react';
 import { Auth,} from 'aws-amplify';
 import '../../CSS/Signup/Authenticator.css';
-
+import { useNavigate } from "react-router-dom";
 import {onChange} from "./AuthUtil"
 
-export default function Verify(){
+
+export default function Verify(props){
     const [userCode, setUserCode] = useState("")
-    const usernameText = Auth.currentCredentials
-    
+    const navigate = useNavigate()
+
     async function confirmSignUp() {
         try {
-            await Auth.confirmSignUp(Auth.user, userCode);
+            await Auth.confirmSignUp(props.username, userCode);
+            props.codeRequired(false)
+            navigate('/')
         } 
         catch (err) { 
             if(err.name === "ExpiredCodeException"){
-                await Auth.resendSignUp(usernameText)
+                await Auth.resendSignUp(props.username)
             }
         }
     }

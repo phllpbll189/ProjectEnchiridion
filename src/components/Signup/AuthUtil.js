@@ -1,4 +1,6 @@
 import {Auth} from 'aws-amplify';
+import { DataStore } from '@aws-amplify/datastore';
+import { User } from '../../models';
 
 function translateSign(signedIn, result, setSigned, setCodeRequired){
     if(signedIn){
@@ -23,6 +25,15 @@ async function signUp(username, password, email, setRequireCode) {
 
       setRequireCode(true)
       console.log(user)
+    //   await DataStore.save(
+    //     new User({
+    //         "username": username,
+    //         "tagline": "Lorem ipsum dolor sit amet",
+    //         "Guides": [],
+    //         "Stats": [],
+    //         "UserID": "a3f4095e-39de-43d2-baf4-f8c16f0f6f4d"
+    //     })
+    // );
   
     } catch (error) {
       console.log("error signing up: ", error);

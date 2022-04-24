@@ -7,6 +7,7 @@ import Form from './Form';
 export default function Authenticator(props){
   const [signed, setSigned] = useState("loading")
   const [codeRequired, setCodeRequired] = useState(false)
+  const [usernameText, setUsernameText] = useState()
   userAuth((signedIn, result) => translateSign(signedIn, result, setSigned))
 
   switch(signed) {
@@ -18,9 +19,9 @@ export default function Authenticator(props){
 
     default: //return Signin form for the user
       if(codeRequired)
-        return <Verify/> //make sure it has callback to go to verify
+        return <Verify username={usernameText} codeRequired={setCodeRequired}/> //make sure it has callback to go to verify
       else
-        return <Form codeRequired={setCodeRequired}/>
+        return <Form codeRequired={setCodeRequired} setUsernameText={setUsernameText}/>
   }   
 }
 

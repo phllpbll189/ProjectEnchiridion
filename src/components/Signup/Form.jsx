@@ -7,6 +7,7 @@ export default function Form(props) {
     const [emailText, setEmailText] = useState()
     const [passwordText, setPasswordText] = useState()
     const [confirmPassText, setConfirmPassText] = useState()
+    const [submitButtonClicked, setMouseButtonClicked] = useState(false)
   
     return (
       <div className="main-container">
@@ -20,7 +21,10 @@ export default function Form(props) {
                 <FormElement setter={setPasswordText}> Password </FormElement>
                 <FormElement setter={setConfirmPassText} SwitchActiveState={SwitchActiveState} status={login}> Confirm Password </FormElement>
     
-                <div className="formButtons" onClick={submitForm}>
+                <div className={"formButtons unselectable " + (submitButtonClicked ? "clickedButton" : "")}
+                    onClick={submitForm}
+                    onMouseDown={() => setMouseButtonClicked(true)}
+                    onMouseUp={() => setMouseButtonClicked(false)}>
                     {SwitchActiveState(login) === "inactive" ? "login" : "signup"}
                 </div>
   
@@ -30,15 +34,16 @@ export default function Form(props) {
     );
  
 
-    function submitForm(event) {
+    async function submitForm(event) {
         event.preventDefault()
     
         if (login) {
-            signIn(usernameText, passwordText, props.codeRequired);
+            await signIn(usernameText, passwordText, props.codeRequired);
+            props.setUsernameText(usernameText)
 
         } else if(!login && passwordText === confirmPassText) {
-            signUp(usernameText, passwordText, emailText, props.codeRequired)
-            
+            await signUp(usernameText, passwordText, emailText, props.codeRequired)
+            props.setUsernameText(usernameText)
 
         } else {
             console.log("Passwords don't match.")
@@ -49,8 +54,8 @@ export default function Form(props) {
     function Switch() {
         return (
             <div className="tabs">
-                <div className={"formButtons " + getButtonName(login)} onClick={() => switchMode(!login)}>Login</div>
-                <div className={"formButtons " + getButtonName(!login)} onClick={() => switchMode(login)}>Sign Up</div>
+                <div className={"formButtons unselectable " + getButtonName(login)} onClick={() => switchMode(!login)}>Login</div>
+                <div className={"formButtons unselectable " + getButtonName(!login)} onClick={() => switchMode(login)}>Sign Up</div>
             </div>
         ) 
     }
@@ -59,8 +64,7 @@ export default function Form(props) {
         if (status) { 
           setLogIn(!login)
         }
-    }
-        
+    }        
 }
   
 function FormElement(props) {

@@ -1,16 +1,17 @@
 type Ratings @model @auth(rules: [{allow: public}]) {
   id: ID!
   Stats: [Stats] @hasMany(indexName: "byRatings", fields: ["id"])
+  ratingType: String!
 }
 
-type Stats @model @auth(rules: [{allow: public}]) {
+type Stats @model @auth(rules: [{allow: public}, {allow: owner, operations: [create, read, delete]}, {allow: private, operations: [read]}]) {
   id: ID!
   guideID: ID! @index(name: "byGuide")
   ratingsID: ID! @index(name: "byRatings")
   userID: ID! @index(name: "byUser")
 }
 
-type Guide @model @auth(rules: [{allow: public}]) {
+type Guide @model @auth(rules: [{allow: private, operations: [read]}, {allow: owner}, {allow: public, operations: [read]}]) {
   id: ID!
   contentJson: String
   creationDate: AWSTimestamp
@@ -18,11 +19,11 @@ type Guide @model @auth(rules: [{allow: public}]) {
   Ratings: [Stats] @hasMany(indexName: "byGuide", fields: ["id"])
 }
 
-type User @model @auth(rules: [{allow: public, operations: [read, update]}]) {
+type User @model @auth(rules: [{allow: public, operations: [read]}, {allow: private, operations: [read]}, {allow: owner}]) {
   id: ID!
-  usernam: String!
+  username: String!
   tagline: String
   Guides: [Guide] @hasMany(indexName: "byUser", fields: ["id"])
-  Stats: [Stats] @hasMany(indexName: "byUser", fields: ["id"])
+  Stats: [Guide] @hasMany(indexName: "byUser", fields: ["id"])
 }
  
